@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="colorPrimary">@color/app_main_color</item>
+        <item name="colorPrimaryDark">@color/app_main_color</item>
+        <item name="android:textColorPrimary">@android:color/darker_gray</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="popupTheme">@style/popMenuStyle</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+    </style>
+
+    <style name="popMenuStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">@color/app_main_bg_color</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+include ':app', ':appdemo'
+include ':viewPagerIndicator_Library'

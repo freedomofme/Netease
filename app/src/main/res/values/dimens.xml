@@ -1,0 +1,20 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--tab字体-->
+    <dimen name="tab_top_fontsize">15sp</dimen>
+    <dimen name="tab_content_text_size">10sp</dimen>
+
+    <!--列表item字体-->
+    <dimen name="list_title_text_size">18dp</dimen>
+    <dimen name="list_content_text_size">16dp</dimen>
+    <dimen name="list_vote_text_size">14dp</dimen>
+
+    <!--列表边距-->
+    <dimen name="list_margin_left_and_right">5dp</dimen>
+
+    <dimen name="list_big_image_item_height">80dp</dimen>
+
+</resources>

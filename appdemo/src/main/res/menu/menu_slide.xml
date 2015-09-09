@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_more"
+        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+        android:title="@string/action_setting"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/slide_left"
+                android:title="@string/slide_left" />
+            <item
+                android:id="@+id/slide_right"
+                android:title="@string/slide_right" />
+        </menu>
+    </item>
+</menu>

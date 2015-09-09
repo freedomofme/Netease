@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">网易新闻</string>
+    <string name="index_name">網易</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings"></string>
+    <string-array name="titles">
+        <item>Android</item>
+        <item>For</item>
+        <item>Fighting</item>
+    </string-array>
+
+</resources>

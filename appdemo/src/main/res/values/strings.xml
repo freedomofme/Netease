@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AndroidPractice</string>
+    <string name="hide_toolbar_onscroll">HideToolbarOnScroll</string>
+    <string name="action_setting">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="search">Search</string>
+    <string name="sample">Sample</string>
+    <string name="slide_menu">SlideMenu</string>
+    <string name="slide_left">Slide Left</string>
+    <string name="slide_right">Slide Right</string>
+</resources>
