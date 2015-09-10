@@ -69,7 +69,6 @@ public class SecondLayerFragment extends LazyFragment {
                             ArrayList<OneNewsItemBean> newsList = new Gson().fromJson(itemArray.toString(), Global.NewsItemType);
                             mOneNewsItemList.addAll(newsList);
 							normalRecyclerViewAdapter.notifyDataSetChanged();
-							System.out.println(mOneNewsItemList.get(0));
 						} catch (JSONException e) {
                             e.printStackTrace();
                         }

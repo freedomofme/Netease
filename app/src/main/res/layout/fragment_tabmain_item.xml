@@ -11,5 +11,6 @@
         android:id="@+id/rv_recycler_view"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+
         />
 </RelativeLayout>

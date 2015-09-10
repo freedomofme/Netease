@@ -7,14 +7,6 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.4" />
         <option name="gradleJvm" value="1.7" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/appdemo" />
-            <option value="$PROJECT_DIR$/viewPagerIndicator_Library" />
-          </set>
-        </option>
       </GradleProjectSettings>
     </option>
   </component>

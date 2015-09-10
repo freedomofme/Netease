@@ -38,7 +38,7 @@ public class OneNewsItemBean {
 
     private int order = -1;
 
-    private List<imgextra> imgextras;
+    private List<imgextra> imgextra;
 
     private int priority = -1;
 
@@ -144,12 +144,12 @@ public class OneNewsItemBean {
         this.hasImg = hasImg;
     }
 
-    public List<imgextra> getImgextras() {
-        return imgextras;
+    public List<imgextra> getImgextra() {
+        return imgextra;
     }
 
-    public void setImgextras(List<imgextra> imgextras) {
-        this.imgextras = imgextras;
+    public void setImgextras(List<imgextra> imgextra) {
+        this.imgextra = imgextra;
     }
 
     public String getImgsrc() {
@@ -267,7 +267,7 @@ public class OneNewsItemBean {
                 ", title='" + title + '\'' +
                 ", hasAD=" + hasAD +
                 ", order=" + order +
-                ", imgextras=" + imgextras +
+                ", imgextra=" + imgextra +
                 ", priority=" + priority +
                 ", lmodify='" + lmodify + '\'' +
                 ", ename='" + ename + '\'' +

@@ -10,4 +10,5 @@
         <item>Fighting</item>
     </string-array>
 
+    <string name="votezero">0跟帖</string>
 </resources>

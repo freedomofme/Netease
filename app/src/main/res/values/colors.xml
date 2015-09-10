@@ -13,4 +13,8 @@
     <color name="tab_background">#f7f7f7</color>
     <color name="tab_top_background">#eb423d</color>
     <color name="fragment_background">#fafafa</color>
+    <color name="list_item_vote_color">#b2b2b2</color>
+    <color name="list_item_subtitle_color">#999999</color>
+    <color name="list_item_title_color">#242424</color>
+    <color name="gray_line_color">#e5e5e5</color>
 </resources>

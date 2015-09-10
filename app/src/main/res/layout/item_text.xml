@@ -3,52 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/list_margin_left_and_right"
-    android:layout_marginRight="@dimen/list_margin_left_and_right">
+    android:layout_marginRight="@dimen/list_margin_left_and_right"
+    android:layout_marginTop="@dimen/list_margin_top_and_bottom">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/list_title_text_size"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000"
-        android:text="null"/>
-    <TextView
-        android:id="@+id/tv_vote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/list_vote_text_size"
-        android:layout_alignBottom="@+id/tv_title"
-        android:layout_alignParentRight="true"
-        android:textColor="#000"
-        android:text="0跟帖"
-        />
     <LinearLayout
-        android:id="@+id/ll_img"
+        android:id="@+id/ll_news_body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tv_title">
-        <ImageView
-            android:id="@+id/iv_img1"
+        android:layout_height="@dimen/list_item_text_image_height"
+        android:orientation="horizontal">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/iv_left_image"
+            android:layout_width="@dimen/list_item_text_image_weight"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/load_fail_small" />
+
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
-        <ImageView
-            android:id="@+id/iv_img2"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
-        <ImageView
-            android:id="@+id/iv_img3"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
+            android:layout_height="@dimen/list_item_text_image_height"
+            android:layout_marginLeft="@dimen/list_margin_left_and_right"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/list_item_news_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text=""
+                android:textColor="@color/list_item_title_color"
+                android:textSize="@dimen/list_title_text_size" />
+
+            <TextView
+                android:id="@+id/list_item_news_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_item_news_title"
+                android:lineSpacingExtra="5dp"
+                android:text=""
+                android:textColor="@color/list_item_subtitle_color"
+                android:textSize="@dimen/list_content_text_size" />
+
+            <TextView
+                android:id="@+id/list_item_vote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingRight="@dimen/list_item_vote_padding"
+                android:text="@string/votezero"
+                android:textColor="@color/list_item_vote_color"
+                android:textSize="@dimen/list_vote_text_size" />
+        </RelativeLayout>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/ll_news_body"
+        android:background="@color/gray_line_color"
+        android:layout_marginTop="@dimen/list_margin_top_and_bottom">
+    </View>
 
 </RelativeLayout>

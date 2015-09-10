@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.vollley.MySingleton;
@@ -24,8 +25,8 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     private final Context mContext;
     private String[] mTitles;
     private ArrayList<OneNewsItemBean> listItem;
-    int defaultImage = R.mipmap.new01;
-    int failImage = R.mipmap.new01;
+    int defaultImage = R.drawable.load_fail;
+    int failImage = R.drawable.load_fail;
     private int[] defaultImages = new int[]{defaultImage};
 
     public static enum ITEM_TYPE {
@@ -43,14 +44,18 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) return ITEM_TYPE.ITEM_TYPE_BANNER.ordinal();
-        return position % 2 == 0 ? ITEM_TYPE.ITEM_TYPE_IMAGE.ordinal() : ITEM_TYPE.ITEM_TYPE_TEXT.ordinal();
+        if (listItem.get(position).getOrder() == 1)
+            return ITEM_TYPE.ITEM_TYPE_BANNER.ordinal();
+        else if (listItem.get(position).getImgextra() != null && listItem.get(position).getImgextra().size() > 1 && listItem.get(position).getSkipType().equals("photoset"))
+            return ITEM_TYPE.ITEM_TYPE_IMAGE.ordinal();
+        else
+            return ITEM_TYPE.ITEM_TYPE_TEXT.ordinal();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE.ITEM_TYPE_IMAGE.ordinal()) {
-            return new ImageViewHolder(mLayoutInflater.inflate(R.layout.item_text, parent, false));
+            return new ImageViewHolder(mLayoutInflater.inflate(R.layout.item_image, parent, false));
         } else if (viewType == ITEM_TYPE.ITEM_TYPE_TEXT.ordinal()) {
             return new TextViewHolder(mLayoutInflater.inflate(R.layout.item_text, parent, false));
         } else {
@@ -61,15 +66,27 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TextViewHolder) {
-            ((TextViewHolder) holder).mTextView.setText(mTitles[position]);
+            if (listItem.size() - 1 >= position) {
+                ((TextViewHolder) holder).mTitle.setText(listItem.get(position).getTitle());
+                ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getDigest());
+                ((TextViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
+                setNetworkImageView(((TextViewHolder) holder).mImageView, listItem.get(position).getImgsrc());
+            }
+
         } else if (holder instanceof ImageViewHolder) {
-            ((ImageViewHolder) holder).mTextView.setText(mTitles[position]);
+            ((ImageViewHolder) holder).mTextView.setText(listItem.get(position).getTitle());
+            ((ImageViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
+
+            setNetworkImageView(((ImageViewHolder) holder).imageView1, listItem.get(position).getImgsrc());
+            setNetworkImageView(((ImageViewHolder) holder).imageView2, listItem.get(position).getImgextra().get(0).getImgsrc());
+            setNetworkImageView(((ImageViewHolder) holder).imageView3, listItem.get(position).getImgextra().get(1).getImgsrc());
+
+
         } else if (holder instanceof BannerViewHold) {
             //无数据时显示默认值
             if (listItem.size() == 0) {
                 String[] urlsStrings = new String[]{"0"};
                 ((BannerViewHold) holder).mSwitchImage.initPager(defaultImages, urlsStrings, urlsStrings);
-                ((BannerViewHold) holder).mSwitchImage.setMove(true, 4000);
             }
             //正常加载数据
             else {
@@ -98,8 +115,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                     }
 
                     ((BannerViewHold) holder).mSwitchImage.initPager(defaultImages2, urlsStrings, textsStrings);
+//                    设置是否滚动
+//                  ((BannerViewHold) holder).mSwitchImage.setMove(true, 4000);
                     //从网络加载数据
-
                     ((BannerViewHold) holder).mSwitchImage.setAndLoadImage(new SwitchImage.DisplayImageView() {
                         @Override
                         public void displayImageFromURL(ImageView view, String url) {
@@ -117,7 +135,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemCount() {
-        return mTitles == null ? 0 : mTitles.length;
+        return listItem == null ? 0 : listItem.size();
     }
 
     public static class BannerViewHold extends RecyclerView.ViewHolder {
@@ -131,28 +149,39 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
-        ImageView imageView1;
-        ImageView imageView2;
-        ImageView imageView3;
+        NetworkImageView imageView1;
+        NetworkImageView imageView2;
+        NetworkImageView imageView3;
+        TextView mVote;//跟帖
 
         ImageViewHolder(View view) {
             super(view);
             mTextView = (TextView) view.findViewById(R.id.tv_title);
-            imageView1 = (ImageView) view.findViewById(R.id.iv_img1);
-            imageView2 = (ImageView) view.findViewById(R.id.iv_img2);
-            imageView3 = (ImageView) view.findViewById(R.id.iv_img3);
-            imageView1.setImageResource(R.mipmap.a);
-            imageView2.setImageResource(R.mipmap.a);
-            imageView3.setImageResource(R.mipmap.a);
+            mVote = (TextView) view.findViewById(R.id.tv_vote);
+            imageView1 = (NetworkImageView) view.findViewById(R.id.iv_img1);
+            imageView2 = (NetworkImageView) view.findViewById(R.id.iv_img2);
+            imageView3 = (NetworkImageView) view.findViewById(R.id.iv_img3);
         }
     }
 
     public static class TextViewHolder extends RecyclerView.ViewHolder {
-        TextView mTextView;
-
+        NetworkImageView mImageView;
+        TextView mTitle;
+        TextView mSubTitle;
+        TextView mVote;//跟帖
         TextViewHolder(View view) {
             super(view);
-            mTextView = (TextView) view.findViewById(R.id.tv_title);
+            mImageView = (NetworkImageView) view.findViewById(R.id.iv_left_image);
+            mTitle = (TextView) view.findViewById(R.id.list_item_news_title);
+            mSubTitle = (TextView) view.findViewById(R.id.list_item_news_subtitle);
+            mVote = (TextView) view.findViewById(R.id.list_item_vote);
         }
+    }
+
+    private void setNetworkImageView(NetworkImageView networkImageView, String url) {
+        networkImageView.setDefaultImageResId(defaultImage);
+        networkImageView.setErrorImageResId(defaultImage);
+        networkImageView.setImageUrl(url,
+                MySingleton.getInstance(mContext).getImageLoader());
     }
 }
