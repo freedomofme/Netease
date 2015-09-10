@@ -1,6 +1,7 @@
 package com.hhxplaying.neteasedemo.netease.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.hhxplaying.neteasedemo.netease.R;
+import com.hhxplaying.neteasedemo.netease.activity.NewsDisplayActivity;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.vollley.MySingleton;
 import com.hhxplaying.neteasedemo.netease.widget.SwitchImage;
@@ -23,11 +25,13 @@ import java.util.ArrayList;
 public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
+    private RecyclerView recyclerView;
     private String[] mTitles;
     private ArrayList<OneNewsItemBean> listItem;
     int defaultImage = R.drawable.load_fail;
     int failImage = R.drawable.load_fail;
     private int[] defaultImages = new int[]{defaultImage};
+    TextViewHolderListener mTextViewHolderListener = new TextViewHolderListener();
 
     public static enum ITEM_TYPE {
         ITEM_TYPE_BANNER,
@@ -35,9 +39,10 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         ITEM_TYPE_TEXT
     }
 
-    public NormalRecyclerViewAdapter(Context context, ArrayList<OneNewsItemBean> listItem) {
+    public NormalRecyclerViewAdapter(Context context, ArrayList<OneNewsItemBean> listItem, RecyclerView recyclerView) {
         mTitles = context.getResources().getStringArray(R.array.titles);
         mContext = context;
+        this.recyclerView = recyclerView;
         this.listItem = listItem;
         mLayoutInflater = LayoutInflater.from(context);
     }
@@ -55,9 +60,12 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE.ITEM_TYPE_IMAGE.ordinal()) {
-            return new ImageViewHolder(mLayoutInflater.inflate(R.layout.item_image, parent, false));
+            View hold = mLayoutInflater.inflate(R.layout.item_image, parent, false);
+            return new ImageViewHolder(hold);
         } else if (viewType == ITEM_TYPE.ITEM_TYPE_TEXT.ordinal()) {
-            return new TextViewHolder(mLayoutInflater.inflate(R.layout.item_text, parent, false));
+            View hold = mLayoutInflater.inflate(R.layout.item_text, parent, false);
+            hold.setOnClickListener(mTextViewHolderListener);
+            return new TextViewHolder(hold);
         } else {
             return new BannerViewHold(mLayoutInflater.inflate(R.layout.item_banner, parent, false));
         }
@@ -156,6 +164,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
         ImageViewHolder(View view) {
             super(view);
+
             mTextView = (TextView) view.findViewById(R.id.tv_title);
             mVote = (TextView) view.findViewById(R.id.tv_vote);
             imageView1 = (NetworkImageView) view.findViewById(R.id.iv_img1);
@@ -183,5 +192,17 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         networkImageView.setErrorImageResId(defaultImage);
         networkImageView.setImageUrl(url,
                 MySingleton.getInstance(mContext).getImageLoader());
+    }
+
+
+
+    class TextViewHolderListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            System.out.println("asdfasfas");
+            int itemPosition = recyclerView.indexOfChild(v);
+            Intent i = new Intent(mContext, NewsDisplayActivity.class);
+            mContext.startActivity(i);
+        }
     }
 }

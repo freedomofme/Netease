@@ -39,7 +39,7 @@ public class SecondLayerFragment extends LazyFragment {
 		setContentView(R.layout.fragment_tabmain_item);
         mRecyclerView = (RecyclerView)findViewById(R.id.rv_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//这里用线性显示 类似于listview
-		normalRecyclerViewAdapter = new NormalRecyclerViewAdapter(getActivity(), mOneNewsItemList);
+		normalRecyclerViewAdapter = new NormalRecyclerViewAdapter(getActivity(), mOneNewsItemList, mRecyclerView);
         mRecyclerView.setAdapter(normalRecyclerViewAdapter);
 	}
 
