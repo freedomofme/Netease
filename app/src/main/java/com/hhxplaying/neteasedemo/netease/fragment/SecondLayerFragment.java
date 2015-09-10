@@ -28,6 +28,7 @@ public class SecondLayerFragment extends LazyFragment {
 	private int position;
 	private TextView textView;
     private ArrayList<OneNewsItemBean> mOneNewsItemList = new ArrayList<>();
+	private NormalRecyclerViewAdapter normalRecyclerViewAdapter;
 
     private RecyclerView mRecyclerView;
 	@Override
@@ -38,7 +39,8 @@ public class SecondLayerFragment extends LazyFragment {
 		setContentView(R.layout.fragment_tabmain_item);
         mRecyclerView = (RecyclerView)findViewById(R.id.rv_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//这里用线性显示 类似于listview
-        mRecyclerView.setAdapter(new NormalRecyclerViewAdapter(getActivity()));
+		normalRecyclerViewAdapter = new NormalRecyclerViewAdapter(getActivity(), mOneNewsItemList);
+        mRecyclerView.setAdapter(normalRecyclerViewAdapter);
 	}
 
 
@@ -66,7 +68,9 @@ public class SecondLayerFragment extends LazyFragment {
                             JSONArray itemArray = obj.getJSONArray(URLs.INDEX_TAG);
                             ArrayList<OneNewsItemBean> newsList = new Gson().fromJson(itemArray.toString(), Global.NewsItemType);
                             mOneNewsItemList.addAll(newsList);
-                        } catch (JSONException e) {
+							normalRecyclerViewAdapter.notifyDataSetChanged();
+							System.out.println(mOneNewsItemList.get(0));
+						} catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

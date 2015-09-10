@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.hhxplaying.neteasedemo.netease.widget.SwitchImage
+        xmlns:personattr="http://schemas.android.com/apk/res/com.hhxplaying.neteasedemo.netease"
+        android:id="@+id/si_banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        personattr:is_last_item_to_next_or_stop="true">
+    </com.hhxplaying.neteasedemo.netease.widget.SwitchImage>
+
+</RelativeLayout>

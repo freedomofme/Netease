@@ -12,5 +12,5 @@
 
     <color name="tab_background">#f7f7f7</color>
     <color name="tab_top_background">#eb423d</color>
-
+    <color name="fragment_background">#fafafa</color>
 </resources>

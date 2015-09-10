@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="page">
+        <attr name="is_last_item_to_next_or_stop" format="boolean" />
+    </declare-styleable>
+</resources>

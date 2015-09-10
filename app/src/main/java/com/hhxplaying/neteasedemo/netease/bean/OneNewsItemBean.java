@@ -50,18 +50,18 @@ public class OneNewsItemBean {
 
     private String imgsrc = "";
 
-    private List<ads> adss;
+    private List<ads> ads;
 
     private String photosetID = "";
 
     private String ptime = "";
 
     public List<ads> getAdss() {
-        return adss;
+        return ads;
     }
 
     public void setAdss(List<ads> adss) {
-        this.adss = adss;
+        this.ads = adss;
     }
 
     public String getAlias() {
@@ -251,7 +251,7 @@ public class OneNewsItemBean {
     @Override
     public String toString() {
         return "OneNewsItemBean{" +
-                "adss=" + adss +
+                "adss=" + ads +
                 ", template='" + template + '\'' +
                 ", hasCover=" + hasCover +
                 ", hasHead=" + hasHead +

@@ -13,8 +13,12 @@
     <dimen name="list_vote_text_size">14dp</dimen>
 
     <!--列表边距-->
-    <dimen name="list_margin_left_and_right">5dp</dimen>
+    <dimen name="list_margin_left_and_right">7dp</dimen>
 
     <dimen name="list_big_image_item_height">80dp</dimen>
+
+    <!--banner高度-->
+    <dimen name="list_banner_height">208dp</dimen>
+    <dimen name="list_banner_title_height">26dp</dimen>
 
 </resources>
