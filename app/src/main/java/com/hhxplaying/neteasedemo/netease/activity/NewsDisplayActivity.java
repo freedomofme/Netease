@@ -15,6 +15,7 @@ public class NewsDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initWindow();
         setContentView(R.layout.activity_news_display);
+
     }
 
     private void initWindow() {

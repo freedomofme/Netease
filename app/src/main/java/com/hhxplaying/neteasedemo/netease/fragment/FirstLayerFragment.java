@@ -13,10 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hhxplaying.neteasedemo.netease.R;
+import com.hhxplaying.neteasedemo.netease.util.ScreenUtil;
 import com.shizhefei.fragment.LazyFragment;
-import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.IndicatorViewPager.IndicatorFragmentPagerAdapter;
+import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.ColorBar;
 import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 
@@ -25,8 +26,10 @@ public class FirstLayerFragment extends LazyFragment {
 	private LayoutInflater inflate;
 	public static final String INTENT_STRING_TABNAME = "intent_String_tabname";
 	public static final String INTENT_INT_INDEX = "intent_int_index";
-	private String tabName[] = {"头条", "科技", "体育", "广州", "财经"};
+	private String tabName[] = {"头条", "科技", "体育", "广州", "财经", "头条", "科技", "体育", "广州", "财经"};
 	private int index;
+	private final int textPadding = 20;//dp
+	private final int barWidth = 35;//dp
 
 	@Override
 	protected void onCreateViewLazy(Bundle savedInstanceState) {
@@ -39,13 +42,10 @@ public class FirstLayerFragment extends LazyFragment {
 		index = bundle.getInt(INTENT_INT_INDEX);
 
 		ViewPager viewPager = (ViewPager) findViewById(R.id.fragment_tabmain_viewPager);
-		Indicator indicator = (Indicator) findViewById(R.id.fragment_tabmain_indicator);
-
-		switch (index) {
-		case 0:
-			indicator.setScrollBar(new ColorBar(getApplicationContext(), Color.RED, 5));
-			break;
-		}
+		ScrollIndicatorView indicator = (ScrollIndicatorView) findViewById(R.id.fragment_tabmain_indicator);
+		ColorBar colorBar = new ColorBar(getApplicationContext(), Color.RED, 5);
+		colorBar.setWidth(ScreenUtil.dp2px(getActivity(), barWidth));
+		indicator.setScrollBar(colorBar);
 
 		float unSelectSize = 14;
 		float selectSize = unSelectSize * 1f;//keep same
@@ -120,6 +120,7 @@ public class FirstLayerFragment extends LazyFragment {
 			}
 			TextView textView = (TextView) convertView;
 			textView.setText(tabName[position]);
+			textView.setPadding(ScreenUtil.dp2px(getActivity(), textPadding), 0, ScreenUtil.dp2px(getActivity(), textPadding), 0);
 			return convertView;
 		}
 

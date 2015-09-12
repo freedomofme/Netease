@@ -8,5 +8,61 @@
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
         <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/gson-2.3.1-3bd5382d2133c60b1624d7f534f68835d8d77166.jar" />
     </item>
+    <item
+        jar="/Users/HHX/Netease/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-f8cadcb6276c58bae792955c3471054438db6b60.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/Netease/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/classes-1a3a6d4faf442a03e13936688e07820f64ef4803.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-8b9fdb7fb57c311eae05ef03049949af0564e850.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/Netease/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/classes-dee86272e6f2b12d8801770aef292955c9016e96.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.3/de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287/systembartint-1.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3-0187367c187acb4704dc8e995456a21f6c42db95.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/Netease/app/libs/ViewpagerIndicator_1.0.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="78b8438e99149e4676e8fbc93b8c3cabb520fb42">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/ViewpagerIndicator_1.0.2-5ce19687c4943a793e2bb46df0c29827bdc2e71d.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/Netease/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/classes-06e2b60f4bb275694ab903b987a51ec7ea62dfa5.jar" />
+    </item>
+    <item
+        jar="/Users/HHX/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.18/38da306aafee11459cd935a01d2c92a98dc670a4/library-1.0.18.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="38da306aafee11459cd935a01d2c92a98dc670a4">
+        <dex dex="/Users/HHX/Netease/app/build/intermediates/pre-dexed/debug/library-1.0.18-6551e4ef3d8e6a03cca7afd1eb316e46a8afc715.jar" />
+    </item>
 
 </items>

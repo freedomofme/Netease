@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_news"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/fragment_background">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/list_margin_left_and_right"
+    android:layout_marginRight="@dimen/list_margin_left_and_right"
+    android:layout_marginTop="@dimen/list_margin_top_and_bottom"
+    android:id="@+id/rlContainer">
+
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_recycler_view"
+        android:layout_height="@dimen/list_big_image_item_height"
+        android:id="@+id/rv_recycler_image"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:scrollbars="horizontal"
         />
 </RelativeLayout>

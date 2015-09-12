@@ -55,10 +55,20 @@
             android:scaleType="centerCrop"/>
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_big_image_item_height"
+        android:id="@+id/rv_subrecycleview"
+        android:layout_below="@+id/ll_img"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_below="@+id/ll_img"
+        android:layout_below="@+id/rv_subrecycleview"
         android:background="@color/gray_line_color"
         android:layout_marginTop="@dimen/list_margin_top_and_bottom">
     </View>

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.google.gson.Gson;
 import com.hhxplaying.neteasedemo.netease.R;
+import com.hhxplaying.neteasedemo.netease.adapter.NormalRecyclerViewAdapter;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.config.Global;
 import com.hhxplaying.neteasedemo.netease.config.URLs;

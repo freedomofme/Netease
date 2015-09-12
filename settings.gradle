@@ -1,2 +1,2 @@
-include ':app', ':appdemo'
+include ':app', ':appdemo', ':app2'
 include ':viewPagerIndicator_Library'

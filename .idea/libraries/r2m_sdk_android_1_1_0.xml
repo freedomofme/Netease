@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="r2m-sdk-android-1.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app2/libs/r2m-sdk-android-1.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

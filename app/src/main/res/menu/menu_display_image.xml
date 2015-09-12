@@ -5,8 +5,7 @@
     <item
         android:id="@+id/action_wholeday"
         android:orderInCategory="100"
-        android:icon="@mipmap/actionbar_item"
-        android:title=""
+        android:title="@string/votezero"
         app:showAsAction="ifRoom"
         />
 

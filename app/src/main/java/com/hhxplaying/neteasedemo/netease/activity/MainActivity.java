@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity{
         toolbar.setTitle(R.string.index_name);
         setSupportActionBar(toolbar);
         invalidateOptionsMenu();
-        int i  = 0;
-
     }
 
 
@@ -54,8 +52,6 @@ public class MainActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
-
         return true;
     }
 
