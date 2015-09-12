@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />
       <module fileurl="file://$PROJECT_DIR$/appdemo/appdemo.iml" filepath="$PROJECT_DIR$/appdemo/appdemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/viewPagerIndicator_Library/viewPagerIndicator_Library.iml" filepath="$PROJECT_DIR$/viewPagerIndicator_Library/viewPagerIndicator_Library.iml" />
     </modules>
   </component>
 </project>
