@@ -96,14 +96,12 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             ((ImageViewHolder) holder).mTextView.setText(listItem.get(position).getTitle());
             ((ImageViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
 
-            setNetworkImageView(((ImageViewHolder) holder).imageView1, listItem.get(position).getImgsrc());
-            setNetworkImageView(((ImageViewHolder) holder).imageView2, listItem.get(position).getImgextra().get(0).getImgsrc());
-            setNetworkImageView(((ImageViewHolder) holder).imageView3, listItem.get(position).getImgextra().get(1).getImgsrc());
-
+//            setNetworkImageView(((ImageViewHolder) holder).imageView1, listItem.get(position).getImgsrc());
+//            setNetworkImageView(((ImageViewHolder) holder).imageView2, listItem.get(position).getImgextra().get(0).getImgsrc());
+//            setNetworkImageView(((ImageViewHolder) holder).imageView3, listItem.get(position).getImgextra().get(1).getImgsrc());
 
             String jsonString = NeteaseURLParse.parseJSONUrlOFPhotoset(listItem.get(position));
-            System.out.println(jsonString);
-
+            //设置水平适配器
             ((ImageViewHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             HorizontalImageRecyclerViewAdapter horizontalImageRecyclerViewAdapter = new HorizontalImageRecyclerViewAdapter(mContext, null, ((ImageViewHolder) holder).mRecyclerView);
             ((ImageViewHolder) holder).mRecyclerView.setAdapter(horizontalImageRecyclerViewAdapter);
@@ -176,9 +174,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
-        NetworkImageView imageView1;
-        NetworkImageView imageView2;
-        NetworkImageView imageView3;
+//        NetworkImageView imageView1;
+//        NetworkImageView imageView2;
+//        NetworkImageView imageView3;
         RecyclerView mRecyclerView;
         TextView mVote;//跟帖
 
@@ -187,9 +185,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
             mTextView = (TextView) view.findViewById(R.id.tv_title);
             mVote = (TextView) view.findViewById(R.id.tv_vote);
-            imageView1 = (NetworkImageView) view.findViewById(R.id.iv_img1);
-            imageView2 = (NetworkImageView) view.findViewById(R.id.iv_img2);
-            imageView3 = (NetworkImageView) view.findViewById(R.id.iv_img3);
+//            imageView1 = (NetworkImageView) view.findViewById(R.id.iv_img1);
+//            imageView2 = (NetworkImageView) view.findViewById(R.id.iv_img2);
+//            imageView3 = (NetworkImageView) view.findViewById(R.id.iv_img3);
 
             mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_subrecycleview);
         }

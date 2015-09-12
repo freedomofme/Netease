@@ -29,7 +29,7 @@ public class FirstLayerFragment extends LazyFragment {
 	private String tabName[] = {"头条", "科技", "体育", "广州", "财经", "头条", "科技", "体育", "广州", "财经"};
 	private int index;
 	private final int textPadding = 20;//dp
-	private final int barWidth = 35;//dp
+	private final int barWidth = 42;//dp
 
 	@Override
 	protected void onCreateViewLazy(Bundle savedInstanceState) {

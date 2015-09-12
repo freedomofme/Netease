@@ -40,13 +40,6 @@ public class Global {
     }
 
 
-
-
-
-
-
-
-
     public static void longLog(String sb, String TAG) {
         if (sb.length() > 4000) {
             Log.v(TAG, "sb.length = " + sb.length());

@@ -44,10 +44,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         float imageMargin = r.getDimension(R.dimen.list_margin_top_and_bottom);//20px
 
         imageHeight = (int)r.getDimension(R.dimen.list_big_image_item_height);
-
         imageWeight = (int)(MyApplication.width - (leftAndRightMargin + imageMargin) * 2) / 3;
-        System.out.println(imageWeight);
-        System.out.println(imageHeight);
     }
 
     public void setPhotoSet(PhotoSet photoSet) {
@@ -68,7 +65,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (photoSet == null || photoSet.getPhotos() == null) {
-           setNetworkImageView(((ImageViewHolder) holder).imageView, "http://img4.cache.netease.com/photo/0096/2015-09-12/t_B39ABCER54GI0096.jpg");
+           setNetworkImageView(((ImageViewHolder) holder).imageView, "");
         } else {
             setNetworkImageView(((ImageViewHolder) holder).imageView, photoSet.getPhotos().get(position).getTimgurl());
         }
@@ -85,6 +82,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         ImageViewHolder(View view , int weight, int height, RecyclerView recyclerView, int index) {
             super(view);
 
+            //第一张图不要边距
             if (index == ITEM_TYPE.ITEM_FIRST.ordinal()) {
                 RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.MATCH_PARENT);
                 RelativeLayout rv = (RelativeLayout) view.findViewById(R.id.rlContainer);

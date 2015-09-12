@@ -37,6 +37,9 @@ public class SecondLayerFragment extends LazyFragment {
 		super.onCreateViewLazy(savedInstanceState);
 		tabName = getArguments().getString(INTENT_STRING_TABNAME);
 		position = getArguments().getInt(INTENT_INT_POSITION);
+		//临时处理下
+		position = position % 5;
+
 		setContentView(R.layout.fragment_tabmain_item);
         mRecyclerView = (RecyclerView)findViewById(R.id.rv_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//这里用线性显示 类似于listview
@@ -48,7 +51,7 @@ public class SecondLayerFragment extends LazyFragment {
 	@Override
 	protected void onResumeLazy() {
 		super.onResumeLazy();
-		getIndexNews();
+		getIndexNews(position);
 	}
 
 	@Override
@@ -57,16 +60,16 @@ public class SecondLayerFragment extends LazyFragment {
 	}
 
 
-	private void getIndexNews() {
+	private void getIndexNews(final int position) {
         MySingleton.getInstance(getActivity()).getRequestQueue().add(
-                RequestSingletonFactory.getInstance().getGETStringRequest(getActivity(), URLs.INDEX_URL, new Response.Listener() {
+                RequestSingletonFactory.getInstance().getGETStringRequest(getActivity(), URLs.getUrl(position), new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
                         JSONObject obj;
                         try {
                             mOneNewsItemList.clear();
                             obj = new JSONObject(response.toString());
-                            JSONArray itemArray = obj.getJSONArray(URLs.INDEX_TAG);
+                            JSONArray itemArray = obj.getJSONArray(URLs.getUrlTag(position));
                             ArrayList<OneNewsItemBean> newsList = new Gson().fromJson(itemArray.toString(), Global.NewsItemType);
                             mOneNewsItemList.addAll(newsList);
 							normalRecyclerViewAdapter.notifyDataSetChanged();

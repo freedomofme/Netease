@@ -25,6 +25,11 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author 大雄O(∩_∩)O~
+ * @version 1.0.1
+ */
 public class SwitchImage extends LinearLayout {
     private final int MOVING = 1;
     private static final int LOOP_TIMES = 2000;
@@ -115,7 +120,6 @@ public class SwitchImage extends LinearLayout {
     }
 
     private void initDots(int count) {
-        System.out.println("count" + count);
         mDotsLayout.removeAllViews();
         for (int j = 0; j < count; j++) {
             mDotsLayout.addView(initDot());

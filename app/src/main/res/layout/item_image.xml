@@ -27,40 +27,40 @@
         android:textSize="@dimen/list_vote_text_size"
         android:paddingRight="@dimen/list_item_vote_padding"
         />
-    <LinearLayout
-        android:id="@+id/ll_img"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/tv_title">
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/iv_img1"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="@dimen/list_margin_top_and_bottom"/>
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/iv_img2"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="@dimen/list_margin_top_and_bottom"/>
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/iv_img3"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/list_big_image_item_height"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"/>
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_img"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_below="@+id/tv_title">-->
+        <!--<com.android.volley.toolbox.NetworkImageView-->
+            <!--android:id="@+id/iv_img1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="@dimen/list_big_image_item_height"-->
+            <!--android:layout_weight="1"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:layout_marginRight="@dimen/list_margin_top_and_bottom"/>-->
+        <!--<com.android.volley.toolbox.NetworkImageView-->
+            <!--android:id="@+id/iv_img2"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="@dimen/list_big_image_item_height"-->
+            <!--android:layout_weight="1"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:layout_marginRight="@dimen/list_margin_top_and_bottom"/>-->
+        <!--<com.android.volley.toolbox.NetworkImageView-->
+            <!--android:id="@+id/iv_img3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="@dimen/list_big_image_item_height"-->
+            <!--android:layout_weight="1"-->
+            <!--android:scaleType="centerCrop"/>-->
+    <!--</LinearLayout>-->
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_big_image_item_height"
         android:id="@+id/rv_subrecycleview"
-        android:layout_below="@+id/ll_img"
+        android:layout_below="@+id/tv_title"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         />

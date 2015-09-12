@@ -40,7 +40,7 @@ public class RequestSingletonFactory {
         defaultPairs_baishuku_mobile = new HashMap<>();
 //        defaultPairs_baishuku_mobile.put("Host", "m.baishuku.com");
 //        defaultPairs_baishuku_mobile.put("Referer", "http://m.baishuku.com/modules/article/waps.php");
-        defaultPairs_baishuku_mobile.put("Cookie", "jieqiUserCharset = gbk");
+        defaultPairs_baishuku_mobile.put("Cookie", "");
         defaultPairs_baishuku_mobile.put("Accept-Encoding", "");
 
     }
