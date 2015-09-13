@@ -1,10 +1,11 @@
 package com.hhxplaying.neteasedemo.netease.bean.imageextra;
+import java.io.Serializable;
 import java.util.List;
 /**
  * Created by HHX on 15/9/12.
  */
 
-public class PhotoSet{
+public class PhotoSet implements Serializable{
     private String postid;
 
     private String series;

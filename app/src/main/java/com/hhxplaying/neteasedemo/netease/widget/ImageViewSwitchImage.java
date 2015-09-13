@@ -30,7 +30,7 @@ import java.util.List;
  * @author 大雄O(∩_∩)O~
  * @version 1.0.1
  */
-public class SwitchImage extends LinearLayout {
+public class ImageViewSwitchImage extends LinearLayout {
     private final int MOVING = 1;
     private static final int LOOP_TIMES = 2000;
     private int timeGap = 1000;
@@ -54,14 +54,14 @@ public class SwitchImage extends LinearLayout {
     private DisplayImageView displayImageView;
 
     private static class MyHandler extends Handler {
-        WeakReference<SwitchImage> mReference;
+        WeakReference<ImageViewSwitchImage> mReference;
 
-        MyHandler(SwitchImage msImage) {
-            mReference = new WeakReference<SwitchImage>(msImage);
+        MyHandler(ImageViewSwitchImage msImage) {
+            mReference = new WeakReference<ImageViewSwitchImage>(msImage);
         }
 
         public void handleMessage(Message msg) {
-            SwitchImage switchImage = mReference.get();
+            ImageViewSwitchImage switchImage = mReference.get();
             if (switchImage == null) return;
 
             if (switchImage.moving && switchImage.viewList.size() > 0) {
@@ -73,7 +73,7 @@ public class SwitchImage extends LinearLayout {
         }
     }
 
-    public SwitchImage(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ImageViewSwitchImage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         TypedArray tArray = context.obtainStyledAttributes(attrs, R.styleable.page, defStyleAttr, 0);
@@ -101,11 +101,11 @@ public class SwitchImage extends LinearLayout {
         handler = new MyHandler(this);
     }
 
-    public SwitchImage(Context context, AttributeSet attrs) {
+    public ImageViewSwitchImage(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwitchImage(Context context) {
+    public ImageViewSwitchImage(Context context) {
         this(context, null);
     }
 
@@ -296,10 +296,7 @@ public class SwitchImage extends LinearLayout {
             viewList.add(holdView);
         }
         initDots(viewList.size());
-
-        //当lastItemToNextOrStop为true,才设置初始很大的位置,否则会初始化显示最后一张
-        if (lastItemToNextOrStop)
-            mPager.setCurrentItem(viewList.size() * LOOP_TIMES / 2);
+        mPager.setCurrentItem(viewList.size() * LOOP_TIMES / 2);
 
         if (images.length == 2) {
             //add one more time, size == 2 crash
@@ -314,11 +311,6 @@ public class SwitchImage extends LinearLayout {
         //        destroyDrawingCache();
     }
 
-    //设置当前Viewpage位置
-    public void setPagePosition(int p) {
-        mPager.setCurrentItem(p);
-    }
-
     public List<View> getViewList() {
         return viewList;
     }
@@ -330,7 +322,7 @@ public class SwitchImage extends LinearLayout {
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SwitchImage.this.switchImageOnClick.viewClickedListener((Integer) (v.getTag()));
+                    ImageViewSwitchImage.this.switchImageOnClick.viewClickedListener((Integer) (v.getTag()));
                 }
             });
         }

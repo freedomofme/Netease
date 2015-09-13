@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/list_margin_left_and_right"
     android:layout_marginRight="@dimen/list_margin_left_and_right"
-    android:layout_marginTop="@dimen/list_margin_top_and_bottom">
+    android:layout_marginTop="@dimen/list_margin_top_and_bottom"
+    >
 
     <TextView
         android:id="@+id/tv_title"
@@ -55,7 +56,7 @@
             <!--android:scaleType="centerCrop"/>-->
     <!--</LinearLayout>-->
 
-    <android.support.v7.widget.RecyclerView
+    <com.hhxplaying.neteasedemo.netease.widget.MyRecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_big_image_item_height"

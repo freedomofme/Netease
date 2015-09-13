@@ -13,6 +13,9 @@ public class URLs {
 //    public static final String INDEX_TAG = "T1348647909107";
     public static final String IMAGE_JSON_URL = "http://c.3g.163.com/photo/api/set/";
 
+    public static final String WEBP_POS_URL = ".720x2147483647.75.auto.webp";
+    public static final String WEBP_PRE_URL = "http://s.cimg.163.com/pi/";
+
     public static final String host = "http://c.m.163.com/";
     public static final String PRE_URL = host + "nc/article/headline/";
     public static final String POS_URL = "/0-20.html";

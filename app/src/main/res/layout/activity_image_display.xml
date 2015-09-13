@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:minHeight="36dp"
+        android:layout_height="40dp"
         android:background="?attr/colorPrimary"
-        />
-    <android.support.v4.view.ViewPager
+        android:layout_alignParentTop="true"
+        android:minHeight="40dp" />
+
+    <com.hhxplaying.neteasedemo.netease.widget.SwitchImage
+        xmlns:personattr="http://schemas.android.com/apk/res/com.hhxplaying.neteasedemo.netease"
         android:id="@+id/fragment_tabmain_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        personattr:is_last_item_to_next_or_stop="false">
+    </com.hhxplaying.neteasedemo.netease.widget.SwitchImage>
+</RelativeLayout>

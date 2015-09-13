@@ -1,9 +1,11 @@
 package com.hhxplaying.neteasedemo.netease.bean.imageextra;
 
+import java.io.Serializable;
+
 /**
  * Created by HHX on 15/9/12.
  */
-public class photos {
+public class photos implements Serializable {
     private String timgurl = "";
 
     private String photohtml = "";

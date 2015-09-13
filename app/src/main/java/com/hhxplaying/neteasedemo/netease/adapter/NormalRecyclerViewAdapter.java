@@ -16,12 +16,14 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.google.gson.Gson;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.activity.ImageDisplayActivity;
+import com.hhxplaying.neteasedemo.netease.activity.NewsDisplayActivity;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
 import com.hhxplaying.neteasedemo.netease.config.Global;
 import com.hhxplaying.neteasedemo.netease.factory.RequestSingletonFactory;
 import com.hhxplaying.neteasedemo.netease.util.NeteaseURLParse;
 import com.hhxplaying.neteasedemo.netease.vollley.MySingleton;
+import com.hhxplaying.neteasedemo.netease.widget.MyRecyclerView;
 import com.hhxplaying.neteasedemo.netease.widget.SwitchImage;
 
 import org.json.JSONException;
@@ -43,6 +45,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     private int[] defaultImages = new int[]{defaultImage};
     private PhotoSet photoSet;
     TextViewHolderListener mTextViewHolderListener = new TextViewHolderListener();
+    ImageViewHolderListener mImageViewHolderListener = new ImageViewHolderListener();
 
     public static enum ITEM_TYPE {
         ITEM_TYPE_BANNER,
@@ -72,6 +75,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE.ITEM_TYPE_IMAGE.ordinal()) {
             View hold = mLayoutInflater.inflate(R.layout.item_image, parent, false);
+            hold.setOnClickListener(mImageViewHolderListener);
             return new ImageViewHolder(hold);
         } else if (viewType == ITEM_TYPE.ITEM_TYPE_TEXT.ordinal()) {
             View hold = mLayoutInflater.inflate(R.layout.item_text, parent, false);
@@ -100,11 +104,21 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //            setNetworkImageView(((ImageViewHolder) holder).imageView2, listItem.get(position).getImgextra().get(0).getImgsrc());
 //            setNetworkImageView(((ImageViewHolder) holder).imageView3, listItem.get(position).getImgextra().get(1).getImgsrc());
             String jsonString = NeteaseURLParse.parseJSONUrlOFPhotoset(listItem.get(position));
-            //设置水平适配器
-                    ((ImageViewHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-            HorizontalImageRecyclerViewAdapter horizontalImageRecyclerViewAdapter = new HorizontalImageRecyclerViewAdapter(mContext, null, ((ImageViewHolder) holder).mRecyclerView);
-            ((ImageViewHolder) holder).mRecyclerView.setAdapter(horizontalImageRecyclerViewAdapter);
-            getPhotosetImageJsonURl(horizontalImageRecyclerViewAdapter, jsonString);
+
+            MyRecyclerView hold = ((ImageViewHolder) holder).mRecyclerView;
+            if (hold.getAdapter() != null &&  hold.getAdapter() instanceof HorizontalImageRecyclerViewAdapter) {
+                //单纯设置数据
+                getPhotosetImageJsonURl((HorizontalImageRecyclerViewAdapter)hold.getAdapter(), jsonString);
+            } else {
+                //设置水平适配器
+                hold.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                HorizontalImageRecyclerViewAdapter horizontalImageRecyclerViewAdapter = new HorizontalImageRecyclerViewAdapter(mContext, null, hold);
+                hold.setAdapter(horizontalImageRecyclerViewAdapter);
+                getPhotosetImageJsonURl(horizontalImageRecyclerViewAdapter, jsonString);
+            }
+
+//            hold.setClickable(true);
+//            hold.requestDisallowInterceptTouchEvent(true);
 
         } else if (holder instanceof BannerViewHold) {
             //无数据时显示默认值
@@ -182,7 +196,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //        NetworkImageView imageView1;
 //        NetworkImageView imageView2;
 //        NetworkImageView imageView3;
-        RecyclerView mRecyclerView;
+        MyRecyclerView mRecyclerView;
         TextView mVote;//跟帖
 
         ImageViewHolder(View view) {
@@ -194,7 +208,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //            imageView2 = (NetworkImageView) view.findViewById(R.id.iv_img2);
 //            imageView3 = (NetworkImageView) view.findViewById(R.id.iv_img3);
 
-            mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_subrecycleview);
+            mRecyclerView = (MyRecyclerView) view.findViewById(R.id.rv_subrecycleview);
         }
     }
 
@@ -225,6 +239,14 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         @Override
         public void onClick(View v) {
             int itemPosition = recyclerView.indexOfChild(v);
+            Intent i = new Intent(mContext, NewsDisplayActivity.class);
+            mContext.startActivity(i);
+        }
+    }
+
+    class ImageViewHolderListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
             Intent i = new Intent(mContext, ImageDisplayActivity.class);
             mContext.startActivity(i);
         }
@@ -241,7 +263,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                             PhotoSet photoSet = new Gson().fromJson(obj.toString(), Global.NewsImageItemType);
                             Global.extraImageHashMap.put(url, photoSet);
                             adapter.setPhotoSet(photoSet);
-                            System.out.println(photoSet);
+//                            System.out.println(photoSet);
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
