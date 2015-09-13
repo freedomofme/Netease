@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hhxplaying.neteasedemo.netease.R;
+import com.hhxplaying.neteasedemo.netease.config.URLs;
 import com.hhxplaying.neteasedemo.netease.util.ScreenUtil;
 import com.shizhefei.fragment.LazyFragment;
 import com.shizhefei.view.indicator.IndicatorViewPager;
@@ -26,7 +27,6 @@ public class FirstLayerFragment extends LazyFragment {
 	private LayoutInflater inflate;
 	public static final String INTENT_STRING_TABNAME = "intent_String_tabname";
 	public static final String INTENT_INT_INDEX = "intent_int_index";
-	private String tabName[] = {"头条", "科技", "体育", "广州", "财经", "头条", "科技", "体育", "广州", "财经"};
 	private int index;
 	private final int textPadding = 20;//dp
 	private final int barWidth = 42;//dp
@@ -110,7 +110,7 @@ public class FirstLayerFragment extends LazyFragment {
 
 		@Override
 		public int getCount() {
-			return tabName.length;
+			return URLs.tabName.length;
 		}
 
 		@Override
@@ -119,7 +119,7 @@ public class FirstLayerFragment extends LazyFragment {
 				convertView = inflate.inflate(R.layout.tab_top, container, false);
 			}
 			TextView textView = (TextView) convertView;
-			textView.setText(tabName[position]);
+			textView.setText(URLs.tabName[position]);
 			textView.setPadding(ScreenUtil.dp2px(getActivity(), textPadding), 0, ScreenUtil.dp2px(getActivity(), textPadding), 0);
 			return convertView;
 		}
@@ -128,7 +128,7 @@ public class FirstLayerFragment extends LazyFragment {
 		public Fragment getFragmentForPage(int position) {
 			SecondLayerFragment mainFragment = new SecondLayerFragment();
 			Bundle bundle = new Bundle();
-			bundle.putString(SecondLayerFragment.INTENT_STRING_TABNAME, tabName[position]);
+			bundle.putString(SecondLayerFragment.INTENT_STRING_TABNAME, URLs.tabName[position]);
 			bundle.putInt(SecondLayerFragment.INTENT_INT_POSITION, position);
 			mainFragment.setArguments(bundle);
 			return mainFragment;

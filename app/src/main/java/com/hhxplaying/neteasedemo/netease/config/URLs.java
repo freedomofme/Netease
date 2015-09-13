@@ -1,10 +1,12 @@
 package com.hhxplaying.neteasedemo.netease.config;
 
-import java.util.HashMap;
+import com.hhxplaying.neteasedemo.netease.util.PinYinUtil;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by HHX on 15/8/20.
- * 下次心情好用反射做个解耦，哎，现在突然想到前女友了，纠结
+ *
  */
 public class URLs {
     public static final String INDEX_URL = "http://c.m.163.com/nc/article/headline/T1348647909107/0-20.html";
@@ -14,14 +16,15 @@ public class URLs {
     public static final String host = "http://c.m.163.com/";
     public static final String PRE_URL = host + "nc/article/headline/";
     public static final String POS_URL = "/0-20.html";
-    public static final HashMap<String, String> hashMap = new HashMap<String, String>();
+
+    public static String tabName[] = {"头条", "科技", "体育", "广州", "财经", "足球", "娱乐", "电影", "汽车", "博客", "社会", "旅游"};
 
     //广州
     public static final String GuangZhouId = "http://c.m.163.com/nc/article/local/5bm/5bee/0-20.html";
     //头条
-    public static final String toutiaoId = "T1348647909107";
+    public static final String TouTiaoId = "T1348647909107";
     // 足球
-    public static final String FootId = "T1399700447917";
+    public static final String ZuQiuId = "T1399700447917";
     // 娱乐
     public static final String YuLeId = "T1348648517839";
     // 体育
@@ -33,10 +36,10 @@ public class URLs {
     // 电影
     public static final String DianYingId = "T1348648650048";
     // 汽车
-    public static final String QiChiId = "T1348654060988";
+    public static final String QiCheId = "T1348654060988";
     // 笑话
     public static final String XiaoHuaId = "T1350383429665";
-    // 笑话
+    // 游戏
     public static final String YouXiId = "T1348654151579";
     // 时尚
     public static final String ShiShangId = "T1348650593803";
@@ -50,7 +53,7 @@ public class URLs {
     public static final String NBAId = "T1348649145984";
     // 数码
     public static final String ShuMaId = "T1348649776727";
-    // 数码
+    // 移动
     public static final String YiDongId = "T1351233117091";
     // 彩票
     public static final String CaiPiaoId = "T1356600029035";
@@ -69,31 +72,59 @@ public class URLs {
     // 家居
     public static final String JiaJuId = "T1348654105308";
     // 暴雪游戏
-    public static final String BaoXueId = "T1397016069906";
+    public static final String BaoXueYouXiId = "T1397016069906";
     // 亲子
     public static final String QinZiId = "T1397116135282";
     // CBA
     public static final String CBAId = "T1348649475931";
     // 消息
-    public static final String MsgId = "T1371543208049";
+    public static final String XiaoXiId = "T1371543208049";
     //评论
     public static final String CommonUrl = host + "nc/article/list/";
 
-    static{
-        hashMap.put("0", toutiaoId);
-        hashMap.put("1", KeJiId);
-        hashMap.put("2", TiYuId);
-        hashMap.put("3", KeJiId);
-        hashMap.put("4", CaiJingId);
-    }
 
-    public static String getUrl(int key) {
-        return PRE_URL + hashMap.get(key + "") + POS_URL;
+    public static String getUrl(String key) {
+        return PRE_URL + getUrlTag(key) + POS_URL;
     }
 
     //截取T字母开始的一段
-    public static String getUrlTag(int key) {
-        return hashMap.get(key + "");
+    public static String getUrlTag(String name) {
+        String pinYinName = PinYinUtil.getInstance().convertAll(name);
+        Object object = getFieldValue(URLs.class, pinYinName);
+        if (object instanceof String) {
+            return (String)object;
+        }
+        return "";
+    }
+
+    private static Object getFieldValue(Class aClazz, String fieldName) {
+        Field field = getClassField(aClazz, fieldName);
+        if (field != null) {
+            try {
+                return field.get(URLs.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return null;
+    }
+
+    //反射field
+    private static Field getClassField(Class aClazz, String aFieldName) {
+        Field[] declaredFields = aClazz.getDeclaredFields();
+        for (Field field : declaredFields) {
+            // 注意：这里判断的方式，是用字符串的比较。很傻瓜，但能跑。要直接返回Field。我试验中，尝试返回Class，然后用getDeclaredField(String fieldName)，但是，失败了
+            if (field.getName().toLowerCase().equals(aFieldName + "id")) {
+                return field;// define in this class
+            }
+        }
+
+//        Class superclass = aClazz.getSuperclass();
+//        if (superclass != null) {
+//            return getClassField(superclass, aFieldName);
+//        }
+        return null;
     }
 
 }

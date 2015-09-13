@@ -99,10 +99,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //            setNetworkImageView(((ImageViewHolder) holder).imageView1, listItem.get(position).getImgsrc());
 //            setNetworkImageView(((ImageViewHolder) holder).imageView2, listItem.get(position).getImgextra().get(0).getImgsrc());
 //            setNetworkImageView(((ImageViewHolder) holder).imageView3, listItem.get(position).getImgextra().get(1).getImgsrc());
-
             String jsonString = NeteaseURLParse.parseJSONUrlOFPhotoset(listItem.get(position));
             //设置水平适配器
-            ((ImageViewHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                    ((ImageViewHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             HorizontalImageRecyclerViewAdapter horizontalImageRecyclerViewAdapter = new HorizontalImageRecyclerViewAdapter(mContext, null, ((ImageViewHolder) holder).mRecyclerView);
             ((ImageViewHolder) holder).mRecyclerView.setAdapter(horizontalImageRecyclerViewAdapter);
             getPhotosetImageJsonURl(horizontalImageRecyclerViewAdapter, jsonString);
@@ -117,7 +116,13 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             else {
                 if (listItem.size() >= 1 && listItem.get(0).getOrder() == 1) {
                     OneNewsItemBean hold = listItem.get(0);
-                    int size = hold.getAdss().size() + 1;
+
+                    //此处为了防止有的栏目的banner只有一个图片的情况。
+                    int size = 0;
+                    if (hold.getAdss() != null)
+                        size = hold.getAdss().size() + 1;
+                    else
+                        size = 1;
                     //memory may leak!
                     int[] defaultImages2 = new int[size];
                     String[] urlsStrings = new String[size];
@@ -232,7 +237,6 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                     public void onResponse(Object response) {
                         JSONObject obj;
                         try {
-                            Global.longLog(response.toString(), "TAG");
                             obj = new JSONObject(response.toString());
                             PhotoSet photoSet = new Gson().fromJson(obj.toString(), Global.NewsImageItemType);
                             Global.extraImageHashMap.put(url, photoSet);

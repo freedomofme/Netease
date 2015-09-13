@@ -16,8 +16,8 @@ public class NeteaseURLParse {
 
         int index = photoset.lastIndexOf("|");
         String realUrl = "";
-        if (index - 4 >= 0  && index + 6 <= photoset.length()) {
-            realUrl = photoset.substring(index - 4, index + 6).replace("|", "/");
+        if (index - 4 >= 0  && index + 1 <= photoset.length()) {
+            realUrl = photoset.substring(index - 4, photoset.length()).replace("|", "/");
             realUrl = URLs.IMAGE_JSON_URL +  realUrl + ".json";
         }
         return realUrl;

@@ -51,7 +51,7 @@ public class SecondLayerFragment extends LazyFragment {
 	@Override
 	protected void onResumeLazy() {
 		super.onResumeLazy();
-		getIndexNews(position);
+		getIndexNews();
 	}
 
 	@Override
@@ -60,16 +60,16 @@ public class SecondLayerFragment extends LazyFragment {
 	}
 
 
-	private void getIndexNews(final int position) {
+	private void getIndexNews() {
         MySingleton.getInstance(getActivity()).getRequestQueue().add(
-                RequestSingletonFactory.getInstance().getGETStringRequest(getActivity(), URLs.getUrl(position), new Response.Listener() {
+                RequestSingletonFactory.getInstance().getGETStringRequest(getActivity(), URLs.getUrl(tabName), new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
                         JSONObject obj;
                         try {
                             mOneNewsItemList.clear();
                             obj = new JSONObject(response.toString());
-                            JSONArray itemArray = obj.getJSONArray(URLs.getUrlTag(position));
+                            JSONArray itemArray = obj.getJSONArray(URLs.getUrlTag(tabName));
                             ArrayList<OneNewsItemBean> newsList = new Gson().fromJson(itemArray.toString(), Global.NewsItemType);
                             mOneNewsItemList.addAll(newsList);
 							normalRecyclerViewAdapter.notifyDataSetChanged();
