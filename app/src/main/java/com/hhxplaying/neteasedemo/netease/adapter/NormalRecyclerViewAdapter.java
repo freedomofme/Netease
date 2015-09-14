@@ -2,6 +2,7 @@ package com.hhxplaying.neteasedemo.netease.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.google.gson.Gson;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.activity.ImageDisplayActivity;
-import com.hhxplaying.neteasedemo.netease.activity.NewsDisplayActivity;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
 import com.hhxplaying.neteasedemo.netease.config.Global;
@@ -44,7 +44,6 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     int failImage = R.drawable.load_fail;
     private int[] defaultImages = new int[]{defaultImage};
     private PhotoSet photoSet;
-    TextViewHolderListener mTextViewHolderListener = new TextViewHolderListener();
     ImageViewHolderListener mImageViewHolderListener = new ImageViewHolderListener();
 
     public static enum ITEM_TYPE {
@@ -79,7 +78,6 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             return new ImageViewHolder(hold);
         } else if (viewType == ITEM_TYPE.ITEM_TYPE_TEXT.ordinal()) {
             View hold = mLayoutInflater.inflate(R.layout.item_text, parent, false);
-            hold.setOnClickListener(mTextViewHolderListener);
             return new TextViewHolder(hold);
         } else {
             return new BannerViewHold(mLayoutInflater.inflate(R.layout.item_banner, parent, false));
@@ -94,6 +92,8 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getDigest());
                 ((TextViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
                 setNetworkImageView(((TextViewHolder) holder).mImageView, listItem.get(position).getImgsrc());
+
+                ((TextViewHolder) holder).v.setOnClickListener(new TextViewHolderListener(position));
             }
 
         } else if (holder instanceof ImageViewHolder) {
@@ -106,9 +106,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             String jsonString = NeteaseURLParse.parseJSONUrlOFPhotoset(listItem.get(position));
 
             MyRecyclerView hold = ((ImageViewHolder) holder).mRecyclerView;
-            if (hold.getAdapter() != null &&  hold.getAdapter() instanceof HorizontalImageRecyclerViewAdapter) {
+            if (hold.getAdapter() != null && hold.getAdapter() instanceof HorizontalImageRecyclerViewAdapter) {
                 //单纯设置数据
-                getPhotosetImageJsonURl((HorizontalImageRecyclerViewAdapter)hold.getAdapter(), jsonString);
+                getPhotosetImageJsonURl((HorizontalImageRecyclerViewAdapter) hold.getAdapter(), jsonString);
             } else {
                 //设置水平适配器
                 hold.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
@@ -193,7 +193,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
-//        NetworkImageView imageView1;
+        //        NetworkImageView imageView1;
 //        NetworkImageView imageView2;
 //        NetworkImageView imageView3;
         MyRecyclerView mRecyclerView;
@@ -217,8 +217,10 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         TextView mTitle;
         TextView mSubTitle;
         TextView mVote;//跟帖
+        View v;
         TextViewHolder(View view) {
             super(view);
+            v = view;
             mImageView = (NetworkImageView) view.findViewById(R.id.iv_left_image);
             mTitle = (TextView) view.findViewById(R.id.list_item_news_title);
             mSubTitle = (TextView) view.findViewById(R.id.list_item_news_subtitle);
@@ -234,13 +236,19 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
 
-
     class TextViewHolderListener implements View.OnClickListener {
+        int position;
+        TextViewHolderListener(int i) {
+            position = i;
+        }
         @Override
         public void onClick(View v) {
-            int itemPosition = recyclerView.indexOfChild(v);
-            Intent i = new Intent(mContext, NewsDisplayActivity.class);
-            mContext.startActivity(i);
+//            int itemPosition = recyclerView.indexOfChild(v);
+//            Intent i = new Intent(mContext, NewsDisplayActivity.class);
+//            mContext.startActivity(i);
+            Uri uri = Uri.parse(listItem.get(position).getUrl_3w());
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            mContext.startActivity(intent);
         }
     }
 
@@ -271,7 +279,6 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                     }
                 }));
     }
-
 
 
 }
