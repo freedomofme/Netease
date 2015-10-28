@@ -18,7 +18,7 @@ public class URLs {
 
     public static final String host = "http://c.m.163.com/";
     public static final String PRE_URL = host + "nc/article/headline/";
-    public static final String POS_URL = "/0-20.html";
+    public static final String POS_URL = "/0-100.html";
 
     public static String tabName[] = {"头条", "科技", "体育", "广州", "财经", "足球", "娱乐", "电影", "汽车", "博客", "社会", "旅游"};
 
