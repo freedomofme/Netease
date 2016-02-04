@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.google.gson.Gson;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.activity.ImageDisplayActivity;
+import com.hhxplaying.neteasedemo.netease.activity.NewsDisplayActivity;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
 import com.hhxplaying.neteasedemo.netease.config.Global;
@@ -29,6 +31,7 @@ import com.hhxplaying.neteasedemo.netease.widget.SwitchImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -246,9 +249,17 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //            int itemPosition = recyclerView.indexOfChild(v);
 //            Intent i = new Intent(mContext, NewsDisplayActivity.class);
 //            mContext.startActivity(i);
-            Uri uri = Uri.parse(listItem.get(position).getUrl_3w());
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            mContext.startActivity(intent);
+
+            String JsonLink = NeteaseURLParse.webURLToMobileJSONLink(listItem.get(position).getUrl());
+            Log.i("RVA", JsonLink);
+
+            Intent i = new Intent(mContext, NewsDisplayActivity.class);
+            mContext.startActivity(i);
+
+//            //直接打开系统浏览器，来查看点击的新闻
+//            Uri uri = Uri.parse(JsonLink);
+//            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//            mContext.startActivity(intent);
         }
     }
 
@@ -262,7 +273,8 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     private void getPhotosetImageJsonURl(final HorizontalImageRecyclerViewAdapter adapter, final String url) {
         MySingleton.getInstance(mContext).getRequestQueue().add(
-                RequestSingletonFactory.getInstance().getGETStringRequest(mContext, url, new Response.Listener() {
+                RequestSingletonFactory.getInstance().getGETStringRequest(mContext, url,
+                        new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
                         JSONObject obj;

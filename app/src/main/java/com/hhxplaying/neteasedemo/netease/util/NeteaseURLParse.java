@@ -33,5 +33,17 @@ public class NeteaseURLParse {
         }
     }
 
+    private static final String originLink = "http://c.3g.163.com/nc/article/NEEDTOBEREPLACED/full.html";
+    /*
+    * 将从JSON中获取的新闻详情链接转换层一个包含完整新闻信息的JSON地址
+    *@param 从Json中获取的链接
+    */
+    public static String webURLToMobileJSONLink(String url) {
+        int firstIndex = url.lastIndexOf("/");
+        int lastIndex = url.lastIndexOf(".");
+
+        return originLink.replace("NEEDTOBEREPLACED", url.substring(firstIndex + 1, lastIndex));
+    }
+
 
 }

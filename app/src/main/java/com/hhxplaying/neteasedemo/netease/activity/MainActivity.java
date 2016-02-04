@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,8 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.viewpager.SViewPager;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity{
     private IndicatorViewPager indicatorViewPager;
@@ -42,9 +45,12 @@ public class MainActivity extends AppCompatActivity{
         viewPager.setOffscreenPageLimit(4);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.index_name);
         setSupportActionBar(toolbar);
         invalidateOptionsMenu();
+
+
     }
 
 

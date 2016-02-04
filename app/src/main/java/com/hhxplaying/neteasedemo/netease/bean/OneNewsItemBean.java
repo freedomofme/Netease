@@ -7,7 +7,9 @@ import java.util.List;
  */
 public class OneNewsItemBean {
     private static final long serialVersionUID = 3L;
-    private String url_3w = "";
+    private String url = "";//手机版
+
+    private String url_3w = "";//电脑版
 
     private String template = "";
 
@@ -256,6 +258,15 @@ public class OneNewsItemBean {
     public void setUrl_3w(String url_3w) {
         this.url_3w = url_3w;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "OneNewsItemBean{" +
