@@ -250,10 +250,11 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 //            Intent i = new Intent(mContext, NewsDisplayActivity.class);
 //            mContext.startActivity(i);
 
-            String JsonLink = NeteaseURLParse.webURLToMobileJSONLink(listItem.get(position).getUrl());
-            Log.i("RVA", JsonLink);
+            String jsonLink = NeteaseURLParse.webURLToMobileJSONLink(listItem.get(position).getUrl());
+            Log.i("RVA", jsonLink);
 
             Intent i = new Intent(mContext, NewsDisplayActivity.class);
+            i.putExtra("NEWS_LINK", jsonLink);
             mContext.startActivity(i);
 
 //            //直接打开系统浏览器，来查看点击的新闻

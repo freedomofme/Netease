@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsList;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
+import com.hhxplaying.neteasedemo.netease.bean.newstext.NewRoot;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public class Global {
     }.getType();
     //解析image item中的（No.>3）图片JSON的URL
     public static Type NewsImageItemType = new TypeToken<PhotoSet>() {
+    }.getType();
+
+    //解析具体的新闻标题和正文
+    public static Type NewRoot = new TypeToken<NewRoot>() {
     }.getType();
 
     public static ConcurrentHashMap<String, PhotoSet> extraImageHashMap = new ConcurrentHashMap<>();

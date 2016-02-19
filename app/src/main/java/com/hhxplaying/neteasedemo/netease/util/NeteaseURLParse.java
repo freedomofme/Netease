@@ -1,5 +1,7 @@
 package com.hhxplaying.neteasedemo.netease.util;
 
+import android.util.Log;
+
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.config.URLs;
 
@@ -35,14 +37,26 @@ public class NeteaseURLParse {
 
     private static final String originLink = "http://c.3g.163.com/nc/article/NEEDTOBEREPLACED/full.html";
     /*
-    * 将从JSON中获取的新闻详情链接转换层一个包含完整新闻信息的JSON地址
+    * 将从JSON中获取的新闻详情链接转换成一个包含完整新闻信息的JSON地址
     *@param 从Json中获取的链接
     */
     public static String webURLToMobileJSONLink(String url) {
         int firstIndex = url.lastIndexOf("/");
         int lastIndex = url.lastIndexOf(".");
-
+        Log.i("RVA", "webURLToMobileJSONLink" + url);
         return originLink.replace("NEEDTOBEREPLACED", url.substring(firstIndex + 1, lastIndex));
+    }
+
+
+    /*
+     * 从新闻完整链接中提取出新闻的ID
+     * 从http://c.3g.163.com/nc/article/BG6RN12A00963VRO/full.html提取BG6RN12A00963VRO
+     */
+    public static String getNewsID(String originLink) {
+        int end = originLink.lastIndexOf("/");
+        int start = originLink.substring(0, end).lastIndexOf("/");
+        return originLink.substring(start + 1, end);
+
     }
 
 
