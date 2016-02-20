@@ -1,6 +1,7 @@
 package com.hhxplaying.neteasedemo.netease.factory;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -59,10 +60,12 @@ public class RequestSingletonFactory {
         return hold;
     }
 
-    public StringRequest getGETStringRequest(Context context, String url, Response.Listener responseListener) {
+    public StringRequest getGETStringRequest(Context context, final String url, Response.Listener responseListener) {
+        Log.i("RVA", "request add queue. link is :" + url);
       return new StringRequest(Request.Method.GET, url, responseListener, new DefaultErrorListener(context)) {
           @Override
           protected Response<String> parseNetworkResponse(NetworkResponse response) {
+              Log.i("RVA", "request successed. link is :" + url);
               String str = null;
               try {
                   str = new String(response.data, "utf-8");//这里写死不好
@@ -134,7 +137,7 @@ public class RequestSingletonFactory {
             } else if (error instanceof ParseError) {
                 errorCode = -8;
             }
-            Toast.makeText(contextHold, ErrorCode.errorCodeMap.get(-1), Toast.LENGTH_SHORT).show();
+            Toast.makeText(contextHold, ErrorCode.errorCodeMap.get(errorCode), Toast.LENGTH_SHORT).show();
         }
     }
 

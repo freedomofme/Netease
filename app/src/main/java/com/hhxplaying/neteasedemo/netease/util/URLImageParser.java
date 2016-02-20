@@ -71,10 +71,12 @@ public class URLImageParser implements Html.ImageGetter {
 
         protected void onPostExecute(Drawable result) {
             // set the correct bound according to the result from HTTP call
-            Log.i("RVA",""+result.getIntrinsicHeight());
-            Log.i("RVA", "" + result.getIntrinsicWidth());
+            Log.i("RVA","height"+result.getIntrinsicHeight());
+            Log.i("RVA", "wight" + result.getIntrinsicWidth());
             //设置图片显示占据的高度
-            urlDrawable.setBounds(0, 0, 0 + MyApplication.width, 0+result.getIntrinsicHeight() * MyApplication.width / result.getIntrinsicWidth());
+            int imageWight = MyApplication.width;
+            int imageHeight = result.getIntrinsicHeight() * MyApplication.width / result.getIntrinsicWidth();
+            urlDrawable.setBounds(0, 0,imageWight, imageHeight);
 
             // change the reference of the current drawable to the result
             // from the HTTP call
@@ -84,11 +86,13 @@ public class URLImageParser implements Html.ImageGetter {
             URLImageParser.this.container.invalidate();
 
             // For ICS
-            URLImageParser.this.container.setHeight((URLImageParser.this.container.getHeight()
-                    + result.getIntrinsicHeight()));
+            URLImageParser.this.container.setHeight((URLImageParser.this.container.getHeight() + imageHeight));
 
             // Pre ICS
             URLImageParser.this.container.setEllipsize(null);
+
+
+            URLImageParser.this.container.requestLayout();
 
         }
 
