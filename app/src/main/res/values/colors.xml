@@ -17,4 +17,65 @@
     <color name="list_item_subtitle_color">#999999</color>
     <color name="list_item_title_color">#242424</color>
     <color name="gray_line_color">#e5e5e5</color>
+
+
+
+
+    <!--never used -->
+    <color name="gridview_selected_green">#ff8dc304</color>
+    <color name="gridview_background_blue">#ffc8d6c5</color>
+    <color name="HomeBlue">#ff9cb9e1</color>
+    <color name="app_bg_color">#fff6efdf</color>
+    <color name="app_start_bg_color">#ffefeff4</color>
+    <color name="tabtxt_selected_blue">#ff3585e0</color>
+    <color name="view_mask">#b0000000</color>
+    <color name="skincolor_1">#fffffaf6</color>
+    <color name="skincolor_2">#fffff6ef</color>
+    <color name="skincolor_3">#ffffefdf</color>
+    <color name="skincolor_4">#ffffeacb</color>
+    <color name="skincolor_5">#ffffe2c0</color>
+    <color name="skincolor_6">#fffedcb7</color>
+    <color name="skincolor_7">#ffffd5bc</color>
+    <color name="skincolor_8">#ffedbf9d</color>
+    <color name="skincolor_9">#ffe2ae86</color>
+    <color name="skincolor_10">#ffd29e79</color>
+    <color name="skincolor_11">#ffc68f70</color>
+    <color name="skincolor_12">#ffb8866d</color>
+    <color name="skincolor_13">#ffa97f69</color>
+    <color name="skincolor_14">#ffa65a4a</color>
+    <color name="skincolor_15">#ff8f7044</color>
+    <color name="skincolor_16">#ff846a37</color>
+    <color name="skincolor_17">#ff7e7258</color>
+    <color name="skincolor_18">#ff554a34</color>
+    <color name="skincolor_19">#ffffe4dd</color>
+    <color name="skincolor_20">#ffffd9d0</color>
+    <color name="skincolor_21">#fffed1ce</color>
+    <color name="haircolor_0">#ff000000</color>
+    <color name="haircolor_1">#ff3f3432</color>
+    <color name="haircolor_2">#ffbe7019</color>
+    <color name="haircolor_3">#ffa2352f</color>
+    <color name="haircolor_4">#ff8e4f0c</color>
+    <color name="haircolor_5">#ff415200</color>
+    <color name="haircolor_6">#ff33836d</color>
+    <color name="haircolor_7">#ff337583</color>
+    <color name="haircolor_8">#ff96529c</color>
+    <color name="haircolor_9">#fff5c73c</color>
+    <color name="haircolor_10">#ffffe374</color>
+    <color name="haircolor_11">#ffffffff</color>
+    <color name="haircolor_12">#ff3e7e4e</color>
+    <color name="haircolor_13">#ff68b82e</color>
+    <color name="haircolor_14">#ffbfd000</color>
+    <color name="haircolor_15">#ffb386b8</color>
+    <color name="haircolor_16">#ff5bbfe4</color>
+    <color name="haircolor_17">#ffb9f0ef</color>
+    <color name="haircolor_18">#ffee7119</color>
+    <color name="haircolor_19">#fffa9595</color>
+    <color name="haircolor_20">#ffff6057</color>
+    <color name="haircolor_21">#ffea5f46</color>
+    <color name="haircolor_22">#ffef4324</color>
+    <color name="haircolor_23">#ff282828</color>
+    <color name="haircolor_24">#ff340002</color>
+    <color name="umeng_fb_color_btn_pressed">#ff1495f7</color>
+    <color name="umeng_fb_color_btn_normal">#ff333333</color>
+    <color name="light_black">#dfdfdf</color>
 </resources>

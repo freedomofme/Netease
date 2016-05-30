@@ -7,19 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Html;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.hhxplaying.neteasedemo.netease.MyApplication;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -40,6 +34,7 @@ public class URLImageParser implements Html.ImageGetter {
         this.container = t;
     }
 
+    @Override
     public Drawable getDrawable(String source) {
         URLDrawable urlDrawable = new URLDrawable();
 

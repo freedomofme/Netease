@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,7 +17,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,15 +31,16 @@
                 android:id="@+id/tv_newstitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                tools:text="Title"
                 android:textColor="@android:color/black"
-                android:textSize="30dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:id="@+id/tv_author_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black" />
+                android:layout_marginTop="6dp"
+                android:textColor="#b2b2b2" />
 
             <TextView
                 android:id="@+id/tv_introduce"

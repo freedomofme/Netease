@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,16 +18,16 @@ import android.widget.TextView;
 
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.fragment.FirstLayerFragment;
+import com.hhxplaying.neteasedemo.netease.fragment.VideoFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.viewpager.SViewPager;
 
-import java.util.HashMap;
-
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private IndicatorViewPager indicatorViewPager;
     private SystemBarTintManager tintManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity{
 
     @TargetApi(19)
     private void initWindow() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             tintManager = new SystemBarTintManager(this);
@@ -88,8 +87,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
-        private String[] tabNames = { "新闻", "阅读", "视听", "发现", "我"};
-        private int[] tabIcons = { R.drawable.maintab_1_selector, R.drawable.maintab_2_selector, R.drawable.maintab_3_selector,
+        private String[] tabNames = {"新闻", "阅读", "视听", "发现", "我"};
+        private int[] tabIcons = {R.drawable.maintab_1_selector, R.drawable.maintab_2_selector, R.drawable.maintab_3_selector,
                 R.drawable.maintab_4_selector, R.drawable.maintab_5_selector};
         private LayoutInflater inflater;
 
@@ -118,11 +117,18 @@ public class MainActivity extends AppCompatActivity{
 
         @Override
         public Fragment getFragmentForPage(int position) {
-            FirstLayerFragment mainFragment = new FirstLayerFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
-            bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
-            mainFragment.setArguments(bundle);
+            Fragment mainFragment;
+            if (position < 1) {
+                mainFragment = new FirstLayerFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
+                bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
+                mainFragment.setArguments(bundle);
+            } else {
+                mainFragment = new VideoFragment();
+            }
+
             return mainFragment;
         }
     }

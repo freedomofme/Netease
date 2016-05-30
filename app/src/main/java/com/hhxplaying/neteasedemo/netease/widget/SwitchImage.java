@@ -335,7 +335,7 @@ public class SwitchImage extends LinearLayout {
             });
         }
     }
-    //传个加载图片的接口进来，艹，上个月写的这么装B
+    //传个加载图片的接口进来
     public void setAndLoadImage(DisplayImageView displayImageView) {
         this.displayImageView = displayImageView;
         if (viewList.size() == 0) throw new RuntimeException("先调用initPager()");

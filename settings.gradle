@@ -1,1 +1,1 @@
-include ':app', ':appdemo', ':app2'
+include ':app', ':wkvideoplayer'
