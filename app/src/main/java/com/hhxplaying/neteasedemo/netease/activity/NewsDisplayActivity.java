@@ -2,12 +2,9 @@ package com.hhxplaying.neteasedemo.netease.activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LevelListDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -21,7 +18,6 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.google.gson.Gson;
 import com.hhxplaying.neteasedemo.netease.R;
-import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
 import com.hhxplaying.neteasedemo.netease.bean.newstext.Img;
 import com.hhxplaying.neteasedemo.netease.bean.newstext.NewRoot;
 import com.hhxplaying.neteasedemo.netease.bean.newstext.NewsID;
@@ -34,7 +30,6 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 
 /**
@@ -173,6 +168,8 @@ public class NewsDisplayActivity extends AppCompatActivity {
         URLImageParser p = new URLImageParser(content, this);
         Spanned htmlSpan = Html.fromHtml(body, p, null);
         content.setText(htmlSpan);
+        content.setTextSize(18);
+
 
     }
 }

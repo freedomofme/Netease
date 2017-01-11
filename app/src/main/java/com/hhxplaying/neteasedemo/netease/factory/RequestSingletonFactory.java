@@ -33,7 +33,7 @@ public class RequestSingletonFactory {
         defaultPairs_baishuku = new HashMap<>();
         defaultPairs_baishuku.put("User-Agent", "Mozilla/5.0");
         defaultPairs_baishuku.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-        defaultPairs_baishuku.put("Accept-Encoding", ""); //这句话加上去怎么死的都不知道
+        defaultPairs_baishuku.put("Accept-Encoding", "");
         defaultPairs_baishuku.put("Accept-Language", "zh-CN,zh;q=0.8");
         defaultPairs_baishuku.put("Host", "c.m.163.com");
         defaultPairs_baishuku.put("Upgrade-Insecure-Requests", "1");
@@ -43,7 +43,6 @@ public class RequestSingletonFactory {
 //        defaultPairs_baishuku_mobile.put("Referer", "http://m.baishuku.com/modules/article/waps.php");
         defaultPairs_baishuku_mobile.put("Cookie", "");
         defaultPairs_baishuku_mobile.put("Accept-Encoding", "");
-
     }
 
 

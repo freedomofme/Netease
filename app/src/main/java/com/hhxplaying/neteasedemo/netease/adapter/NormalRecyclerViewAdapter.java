@@ -2,7 +2,6 @@ package com.hhxplaying.neteasedemo.netease.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,7 +30,6 @@ import com.hhxplaying.neteasedemo.netease.widget.SwitchImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -48,6 +46,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     private int[] defaultImages = new int[]{defaultImage};
     private PhotoSet photoSet;
     ImageViewHolderListener mImageViewHolderListener = new ImageViewHolderListener();
+    final String TAG = getClass().getSimpleName();
 
     public static enum ITEM_TYPE {
         ITEM_TYPE_BANNER,
@@ -95,7 +94,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getDigest());
                 ((TextViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
                 setNetworkImageView(((TextViewHolder) holder).mImageView, listItem.get(position).getImgsrc());
-
+                Log.i(TAG, "onBindViewHolder TextViewHolder");
                 ((TextViewHolder) holder).v.setOnClickListener(new TextViewHolderListener(position));
             }
 
@@ -111,9 +110,11 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             MyRecyclerView hold = ((ImageViewHolder) holder).mRecyclerView;
             if (hold.getAdapter() != null && hold.getAdapter() instanceof HorizontalImageRecyclerViewAdapter) {
                 //单纯设置数据
+                Log.i(TAG, "单纯设置数据");
                 getPhotosetImageJsonURl((HorizontalImageRecyclerViewAdapter) hold.getAdapter(), jsonString);
             } else {
                 //设置水平适配器
+                Log.i(TAG, "设置水平适配器");
                 hold.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                 HorizontalImageRecyclerViewAdapter horizontalImageRecyclerViewAdapter = new HorizontalImageRecyclerViewAdapter(mContext, null, hold);
                 hold.setAdapter(horizontalImageRecyclerViewAdapter);
@@ -183,6 +184,11 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public int getItemCount() {
         return listItem == null ? 0 : listItem.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     public static class BannerViewHold extends RecyclerView.ViewHolder {

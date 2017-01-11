@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +32,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     PhotoSet photoSet;
     int imageWeight;
     int imageHeight;
+    static final String TAG = "HorizontalImageRecycler";
 
 //    public static enum ITEM_TYPE {
 //        ITEM_FIRST,
@@ -112,6 +114,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
             imageView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+                    Log.i(TAG, "onTouch");
                     if (event.getAction() == MotionEvent.ACTION_UP && !isMoved)
                         mListener.onViewPageTouch((NetworkImageView) v, index);
                     else {
