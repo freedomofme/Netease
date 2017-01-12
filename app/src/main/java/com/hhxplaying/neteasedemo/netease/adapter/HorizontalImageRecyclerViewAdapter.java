@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -15,14 +13,13 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.hhxplaying.neteasedemo.netease.MyApplication;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.activity.ImageDisplayActivity;
-import com.hhxplaying.neteasedemo.netease.adapter.HorizontalImageRecyclerViewAdapter.ImageViewHolder.IMyViewHolderClicks;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
 import com.hhxplaying.neteasedemo.netease.vollley.MySingleton;
 
 /**
  * Created by HHX on 15/9/9.
  */
-public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private RecyclerView recyclerView;
@@ -34,10 +31,6 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     int imageHeight;
     static final String TAG = "HorizontalImageRecycler";
 
-//    public static enum ITEM_TYPE {
-//        ITEM_FIRST,
-//        ITEM_NOT_FIRST
-//    }
 
     public HorizontalImageRecyclerViewAdapter(Context context, PhotoSet photoSet, RecyclerView recyclerView) {
         mContext = context;
@@ -63,19 +56,13 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
         View hold = mLayoutInflater.inflate(R.layout.item_sub_image, parent, false);
-        return new ImageViewHolder(hold, imageWeight, imageHeight, recyclerView, viewType, new IMyViewHolderClicks(){
-            @Override
-            public void onViewPageTouch(NetworkImageView callerImage, int index) {
-                Intent i = new Intent(mContext, ImageDisplayActivity.class);
-                //传递此参数给ViewPage显示
-                i.putExtra("photoSet", photoSet);
-                //传递被点击的image的index
-                i.putExtra("imageIndex", index);
-                mContext.startActivity(i);
-            }
-        });
+
+        ImageViewHolder holder = new ImageViewHolder(hold, imageWeight, imageHeight, viewType);
+        holder.imageView.setTag(viewType);
+        holder.imageView.setOnClickListener(this);
+        return holder;
     }
 
     @Override
@@ -92,16 +79,23 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         return (photoSet == null || photoSet.getPhotos() == null) ? 3 : photoSet.getPhotos().size();
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(mContext, ImageDisplayActivity.class);
+        //传递此参数给ViewPage显示
+        i.putExtra("photoSet", photoSet);
+        //传递被点击的image的index
+        i.putExtra("imageIndex", (Integer) v.getTag());
+        mContext.startActivity(i);
+    }
+
     public static class ImageViewHolder extends RecyclerView.ViewHolder{
         NetworkImageView imageView;
-        IMyViewHolderClicks mListener;
         int index;
-        boolean isMoved = false;
-        ImageViewHolder(View view , int weight, int height, RecyclerView recyclerView, int i, IMyViewHolderClicks myViewHoldeTouch) {
+        ImageViewHolder(View view , int weight, int height, int i) {
             super(view);
-            mListener = myViewHoldeTouch;
             index = i;
-            isMoved = false;
+
             //第一张图不要边距
             if (index == 0) {
                 RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -111,25 +105,6 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
             }
             imageView = (NetworkImageView) view.findViewById(R.id.iv_sub_image);
             imageView.setLayoutParams(new RelativeLayout.LayoutParams(weight, height));
-            imageView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    Log.i(TAG, "onTouch");
-                    if (event.getAction() == MotionEvent.ACTION_UP && !isMoved)
-                        mListener.onViewPageTouch((NetworkImageView) v, index);
-                    else {
-                        isMoved = false;
-                    }
-                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        isMoved = true;
-                    }
-                    return true;
-                }
-            });
-        }
-
-        public interface IMyViewHolderClicks {
-            void onViewPageTouch(NetworkImageView callerImage, int index);
         }
     }
 
