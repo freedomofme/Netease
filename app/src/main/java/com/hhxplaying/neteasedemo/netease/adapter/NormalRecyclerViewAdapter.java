@@ -48,7 +48,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     ImageViewHolderListener mImageViewHolderListener = new ImageViewHolderListener();
     final String TAG = getClass().getSimpleName();
 
-    public static enum ITEM_TYPE {
+    public enum ITEM_TYPE {
         ITEM_TYPE_BANNER,
         ITEM_TYPE_IMAGE,
         ITEM_TYPE_TEXT
@@ -91,7 +91,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         if (holder instanceof TextViewHolder) {
             if (listItem.size() - 1 >= position) {
                 ((TextViewHolder) holder).mTitle.setText(listItem.get(position).getTitle());
-                ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getDigest());
+                ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getSource());
                 ((TextViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
                 setNetworkImageView(((TextViewHolder) holder).mImageView, listItem.get(position).getImgsrc());
                 Log.i(TAG, "onBindViewHolder TextViewHolder");

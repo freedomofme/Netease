@@ -27,6 +27,8 @@ public class OneNewsItemBean {
 
     private String digest = "";
 
+    private String source = "";
+
     private boolean hasIcon = false;
 
     private String skipType = "";
@@ -83,6 +85,14 @@ public class OneNewsItemBean {
         this.cid = cid;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     public String getDigest() {
         return digest;
     }
@@ -90,6 +100,7 @@ public class OneNewsItemBean {
     public void setDigest(String digest) {
         this.digest = digest;
     }
+
 
     public String getDocid() {
         return docid;
@@ -279,6 +290,7 @@ public class OneNewsItemBean {
                 ", alias='" + alias + '\'' +
                 ", hasImg=" + hasImg +
                 ", digest='" + digest + '\'' +
+                ", source='" + source + '\'' +
                 ", hasIcon=" + hasIcon +
                 ", skipType='" + skipType + '\'' +
                 ", cid='" + cid + '\'' +

@@ -27,7 +27,7 @@ public class NewsID {
 
     private String ec;
 
-    private List<String> topiclist ;
+    private List<Topiclist> topiclist ;
 
     private String docid;
 
@@ -125,10 +125,10 @@ public class NewsID {
     public String getEc(){
         return this.ec;
     }
-    public void setTopiclist(List<String> topiclist){
+    public void setTopiclist(List<Topiclist> topiclist){
         this.topiclist = topiclist;
     }
-    public List<String> getTopiclist(){
+    public List<Topiclist> getTopiclist(){
         return this.topiclist;
     }
     public void setDocid(String docid){

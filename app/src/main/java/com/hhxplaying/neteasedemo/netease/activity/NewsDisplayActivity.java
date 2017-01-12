@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.bean.newstext.Img;
 import com.hhxplaying.neteasedemo.netease.bean.newstext.NewRoot;
@@ -105,12 +106,13 @@ public class NewsDisplayActivity extends AppCompatActivity {
                                     obj = new JSONObject(hold.toString());
 
                                     NewRoot newRoot = new Gson().fromJson(obj.toString(), Global.NewRoot);
+
                                     Log.i("RVA", "response: " + response.toString());
                                     Log.i("RVA", "newRoot: " + newRoot.toString());
 
                                     updateViewFromJSON(newRoot);
 
-                                } catch (JSONException e) {
+                                } catch (JSONException | JsonParseException e) {
                                     e.printStackTrace();
                                 }
                             }
