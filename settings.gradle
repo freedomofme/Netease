@@ -1,2 +1,1 @@
-include ':app', ':wkvideoplayer', ':HandyVolley'
-project(':HandyVolley').projectDir=new File('/Users/HHX/gitHub/HandyVolley')
+include ':app', ':wkvideoplayer'
