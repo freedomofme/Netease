@@ -2,6 +2,7 @@ package com.hhxplaying.neteasedemo.netease;
 
 import android.app.Application;
 
+import com.android.volley.VolleyLog;
 import com.hhxplaying.neteasedemo.netease.util.ScreenUtil;
 
 /**
@@ -19,6 +20,8 @@ public class MyApplication extends Application {
         System.out.println(width);
         System.out.println(height);
         System.out.println(density);
+
+        VolleyLog.DEBUG = true;
     }
 
 }

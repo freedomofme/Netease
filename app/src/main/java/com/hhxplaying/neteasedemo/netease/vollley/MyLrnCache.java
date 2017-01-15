@@ -44,6 +44,6 @@ public class MyLrnCache extends LruCache<String, Bitmap>
         // 4 bytes per pixel
         final int screenBytes = screenWidth * screenHeight * 4;
 
-        return screenBytes * 10;
+        return screenBytes * 5;
     }
 }

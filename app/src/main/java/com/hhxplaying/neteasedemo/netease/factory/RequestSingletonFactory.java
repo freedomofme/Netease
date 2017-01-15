@@ -14,11 +14,11 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.hhxplaying.neteasedemo.netease.config.ErrorCode;
 
-import java.io.UnsupportedEncodingException;
+import org.cybergarage.http.HTTP;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +29,9 @@ public class RequestSingletonFactory {
     private volatile static RequestSingletonFactory requestFactory;
     private static final HashMap<String, String> defaultPairs_baishuku;
     private static final HashMap<String, String> defaultPairs_baishuku_mobile;
+
+    protected static final String TYPE_UTF8_CHARSET = "charset=UTF-8";
+
     static {
         defaultPairs_baishuku = new HashMap<>();
         defaultPairs_baishuku.put("User-Agent", "Mozilla/5.0");
@@ -48,15 +51,13 @@ public class RequestSingletonFactory {
 
 
     public static RequestSingletonFactory getInstance() {
-        RequestSingletonFactory hold = requestFactory;
-        if (hold == null) {
+        if (requestFactory == null) {
             synchronized (RequestSingletonFactory.class) {
-                hold = requestFactory;
-                if (hold == null)
-                    requestFactory = hold = new RequestSingletonFactory();
+                if (requestFactory == null)
+                    requestFactory = new RequestSingletonFactory();
             }
         }
-        return hold;
+        return requestFactory;
     }
 
     public StringRequest getGETStringRequest(Context context, final String url, Response.Listener responseListener) {
@@ -65,18 +66,24 @@ public class RequestSingletonFactory {
           @Override
           protected Response<String> parseNetworkResponse(NetworkResponse response) {
               Log.i("RVA", "request successed. link is :" + url);
-              String str = null;
-              try {
-                  str = new String(response.data, "utf-8");//这里写死不好
-              } catch (UnsupportedEncodingException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
-              }
-              return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
+              addEncodeing2Request(response);
+              return super.parseNetworkResponse(response);
           }
           @Override
           public Map<String, String> getHeaders() throws AuthFailureError{
               return defaultPairs_baishuku;
+          }
+          @Override
+          public int getDefaultTtl() {
+              return 15 * 24 * 3600;
+          }
+          @Override
+          public int getDefaultSoftTtl() {
+              return 1 * 60;
+          }
+          @Override
+          public boolean shouldLocalCacheControl() {
+              return true;
           }
       };
     }
@@ -90,26 +97,43 @@ public class RequestSingletonFactory {
             @Override
             protected Response<String> parseNetworkResponse(NetworkResponse response) {
                 String str = null;
-                try {
-                    str = new String(response.data, "utf-8");//这里写死不好
-                } catch (UnsupportedEncodingException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
+                addEncodeing2Request(response);
+                return super.parseNetworkResponse(response);
             }
             // Volley请求类提供了一个 getHeaders（）的方法，重载这个方法可以自定义HTTP 的头信息。（也可不实现）
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError{
                 return defaultPairs_baishuku_mobile;
             }
-            @Override
-            protected String getParamsEncoding() {
-                return "GBK";
-            }
+
+//            @Override
+//            protected String getParamsEncoding() {
+//                return "GBK";
+//            }
         };
+    }
 
+    private void addEncodeing2Request(NetworkResponse response) {
+        try {
+            String type = response.headers.get(HTTP.CONTENT_TYPE);
+            if (type == null) {
+                //Content-Type:
+                Log.d("RVA", "content type was null");
+                type = TYPE_UTF8_CHARSET;
+                response.headers.put(HTTP.CONTENT_TYPE, type);
+            } else if (!type.contains("charset")) {
+                //Content-Type: text/plain;
+                Log.d("RVA", "charset was null, added encode utf-8");
+                type += ";" + TYPE_UTF8_CHARSET;
+                response.headers.put(HTTP.CONTENT_TYPE, type);
+            } else {
+                //Nice! Content-Type: text/plain; charset=utf-8'
+                Log.d("RVA", "charset is " + type);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     class DefaultErrorListener implements Response.ErrorListener {
@@ -119,9 +143,9 @@ public class RequestSingletonFactory {
         }
         @Override
         public void onErrorResponse(VolleyError error) {
-
             error.printStackTrace();
-            System.out.println("error:" + error);
+            Log.d("RVA", "error:" + error);
+
             int errorCode = 0;
             if (error instanceof TimeoutError) {
                 errorCode = -7;
