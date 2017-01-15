@@ -3,8 +3,10 @@ package com.hhxplaying.neteasedemo.netease.widget;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
+import android.util.Log;
 import android.view.MotionEvent;
+
+import com.hhxplaying.neteasedemo.netease.adapter.HorizontalImageRecyclerViewAdapter;
 
 /**
  * Created by HHX on 15/9/14.
@@ -32,65 +34,57 @@ public class MyRecyclerView extends RecyclerView {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean temp = super.onInterceptTouchEvent(ev);
-        return temp;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        boolean temp = super.onInterceptTouchEvent(event);
+        Log.d("HorizontalImage", "parent onIntercept ACTION_MOVE:" + temp);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 firstTime = true;
-                x = -1;
-                y = -1;
+                x = event.getX();
+                y = event.getY();
                 break;
+        }
+
+        boolean isIntercept = ((HorizontalImageRecyclerViewAdapter)getAdapter()).isIntercept;
+
+        return temp || isIntercept;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d("HorizontalImage", "parent onTouchEvent" + event.getAction());
+        switch (event.getAction()) {
+           /* 这段代码理论是不要的，因为onInterceptTouchEvent已经处理了所有情况，这里有少数情况会触发。
+            case MotionEvent.ACTION_DOWN:
+                getParent().requestDisallowInterceptTouchEvent(true);
+                firstTime = true;
+                x = event.getX();
+                y = event.getY();
+                break;*/
             case MotionEvent.ACTION_MOVE:
                 if (firstTime) {
-                    if (x == -1) {
-                        x = event.getX();
-                        y = event.getY();
-                    } else {
-                        float deltaX = Math.abs(x - event.getX());
-                        float deltaY = Math.abs(y - event.getY());
+                    float deltaX = Math.abs(x - event.getX());
+                    float deltaY = Math.abs(y - event.getY());
 
-                        if (deltaX > 1 || deltaY > 1) {
-                            // 水平滑动距离大于五倍的垂直距离才判断为水平
-                            if (deltaX > deltaY * 5) {
-                                getParent().requestDisallowInterceptTouchEvent(true);
-                            } else {
-                                getParent().requestDisallowInterceptTouchEvent(false);
-                            }
-                            firstTime = false;
+                    if (deltaX > 1 || deltaY > 1) {
+                        // 水平滑动距离大于两倍的垂直距离才判断为水平
+                        if (deltaX > deltaY * 2) {
+                            getParent().requestDisallowInterceptTouchEvent(true);
+                        } else {
+                            getParent().requestDisallowInterceptTouchEvent(false);
                         }
-
+                        firstTime = false;
                     }
-
                 }
                 break;
-            case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_OUTSIDE:
-                firstTime = false;
-                x = -1;
-                y = -1;
                 getParent().requestDisallowInterceptTouchEvent(false);
                 break;
         }
         return super.onTouchEvent(event);
 
-    }
-
-    // 水平滑动时返回false
-    class VerticalScrollDetector extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2,
-                                float distanceX, float distanceY) {
-            if (Math.abs(distanceY) > Math.abs(distanceX)) {
-                return true;
-            }
-            return false;
-        }
     }
 }
