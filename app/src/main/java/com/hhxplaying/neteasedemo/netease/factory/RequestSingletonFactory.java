@@ -75,11 +75,11 @@ public class RequestSingletonFactory {
           }
           @Override
           public int getDefaultTtl() {
-              return 15 * 24 * 3600;
+              return 15 * 24 * 3600 * 1000;
           }
           @Override
           public int getDefaultSoftTtl() {
-              return 1 * 60;
+              return 1 * 60 * 1000;
           }
           @Override
           public boolean shouldLocalCacheControl() {

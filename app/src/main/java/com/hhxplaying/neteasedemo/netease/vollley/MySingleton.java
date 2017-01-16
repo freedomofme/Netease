@@ -35,7 +35,7 @@ public class MySingleton {
                         cache.put(url, bitmap);
                     }
                 });*/
-                new MyLrnCache(mCtx));
+                new MyLrnCache(mCtx), 1 * 3600 * 1000, 15 * 24 * 3600 * 1000, true);
     }
 
     public static synchronized MySingleton getInstance(Context context) {
