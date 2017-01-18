@@ -310,6 +310,8 @@ public class SwitchImage extends LinearLayout {
             }
         }
 
+        mTextView.setText(this.texts[0]);
+
         ViewPagerAdapter.notifyDataSetChanged();
         //        destroyDrawingCache();
     }
