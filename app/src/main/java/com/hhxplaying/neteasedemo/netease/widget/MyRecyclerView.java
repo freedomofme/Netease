@@ -48,6 +48,8 @@ public class MyRecyclerView extends RecyclerView {
 
         boolean isIntercept = ((HorizontalImageRecyclerViewAdapter)getAdapter()).isIntercept;
 
+        Log.d("HorizontalImage", "parent onIntercept isIntercept:" + isIntercept);
+
         return temp || isIntercept;
     }
 
@@ -82,6 +84,7 @@ public class MyRecyclerView extends RecyclerView {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_OUTSIDE:
                 getParent().requestDisallowInterceptTouchEvent(false);
+                ((HorizontalImageRecyclerViewAdapter)getAdapter()).isIntercept = false;
                 break;
         }
         return super.onTouchEvent(event);
