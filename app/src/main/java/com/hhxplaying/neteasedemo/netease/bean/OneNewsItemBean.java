@@ -61,6 +61,8 @@ public class OneNewsItemBean {
 
     private String ptime = "";
 
+    private String postid = "";
+
     public List<ads> getAdss() {
         return ads;
     }
@@ -278,6 +280,14 @@ public class OneNewsItemBean {
         this.url = url;
     }
 
+    public String getPostid(){
+        return postid;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
+
     @Override
     public String toString() {
         return "OneNewsItemBean{" +
@@ -306,6 +316,7 @@ public class OneNewsItemBean {
                 ", imgsrc='" + imgsrc + '\'' +
                 ", photosetID='" + photosetID + '\'' +
                 ", ptime='" + ptime + '\'' +
+                ", postid='" + postid + '\'' +
                 '}';
     }
 

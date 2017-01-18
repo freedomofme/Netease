@@ -1,8 +1,5 @@
 package com.hhxplaying.neteasedemo.netease.util;
 
-import android.os.Handler;
-import android.util.Log;
-
 import com.hhxplaying.neteasedemo.netease.bean.OneNewsItemBean;
 import com.hhxplaying.neteasedemo.netease.config.URLs;
 
@@ -36,16 +33,33 @@ public class NeteaseURLParse {
         }
     }
 
+
+
     private static final String originLink = "http://c.3g.163.com/nc/article/NEEDTOBEREPLACED/full.html";
-    /*
-    * 将从JSON中获取的新闻详情链接转换成一个包含完整新闻信息的JSON地址
-    *@param 从Json中获取的链接
-    */
+    /**
+     * 作为备用方案 postid优先级更高
+     * 将从JSON中获取的新闻详情链接转换成一个包含完整新闻信息的JSON地址
+     * @param url 从Json中获取的链接
+     */
     public static String webURLToMobileJSONLink(String url) {
         int firstIndex = url.lastIndexOf("/");
         int lastIndex = url.lastIndexOf(".");
-        Log.i("RVA", "webURLToMobileJSONLink" + url);
+        if (firstIndex == -1 || lastIndex == -1 || !url.contains("163"))
+            return "";
+
         return originLink.replace("NEEDTOBEREPLACED", url.substring(firstIndex + 1, lastIndex));
+    }
+
+    /**
+     * 首选方案 使用postid
+     * 将从JSON中获取的新闻详情链接转换成一个包含完整新闻信息的JSON地址
+     * @param postid 从Json中获取的链接
+     */
+
+    public static String webURLToMobileJSONLink2(String postid) {
+        if (postid == null || postid.equals(""))
+            return "";
+        return originLink.replace("NEEDTOBEREPLACED", postid);
     }
 
 

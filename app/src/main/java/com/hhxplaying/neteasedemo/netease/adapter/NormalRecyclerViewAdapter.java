@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -252,11 +253,10 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         }
         @Override
         public void onClick(View v) {
-//            int itemPosition = recyclerView.indexOfChild(v);
-//            Intent i = new Intent(mContext, NewsDisplayActivity.class);
-//            mContext.startActivity(i);
-
-            String jsonLink = NeteaseURLParse.webURLToMobileJSONLink(listItem.get(position).getUrl());
+            Log.d("RVA", "TextViewHolderListener :" + listItem.get(position) + "");
+            String jsonLink = NeteaseURLParse.webURLToMobileJSONLink2(listItem.get(position).getPostid());
+            if (TextUtils.isEmpty(jsonLink))
+                jsonLink = NeteaseURLParse.webURLToMobileJSONLink(listItem.get(position).getUrl());
             Log.i("RVA", jsonLink);
 
             Intent i = new Intent(mContext, NewsDisplayActivity.class);
