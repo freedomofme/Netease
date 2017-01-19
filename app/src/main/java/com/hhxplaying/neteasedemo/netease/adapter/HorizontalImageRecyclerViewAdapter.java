@@ -17,6 +17,7 @@ import com.hhxplaying.neteasedemo.netease.MyApplication;
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.activity.ImageDisplayActivity;
 import com.hhxplaying.neteasedemo.netease.bean.imageextra.PhotoSet;
+import com.hhxplaying.neteasedemo.netease.util.NeteaseURLParse;
 import com.hhxplaying.neteasedemo.netease.vollley.MySingleton;
 
 /**
@@ -80,7 +81,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         if (photoSet == null || photoSet.getPhotos() == null) {
             setNetworkImageView(((ImageViewHolder) holder).imageView, "");
         } else {
-            setNetworkImageView(((ImageViewHolder) holder).imageView, photoSet.getPhotos().get(position).getTimgurl());
+            setNetworkImageView(((ImageViewHolder) holder).imageView, NeteaseURLParse.parseWebpImageForTextAndImageType(photoSet.getPhotos().get(position).getTimgurl(), imageWeight));
         }
     }
 
@@ -157,7 +158,7 @@ public class HorizontalImageRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         networkImageView.setDefaultImageResId(defaultImage);
         networkImageView.setErrorImageResId(defaultImage);
         networkImageView.setImageUrl(url,
-                MySingleton.getInstance(mContext).getImageLoader());
+                MySingleton.getInstance(mContext.getApplicationContext()).getImageLoader());
     }
 
     private static float distance(float x1, float y1, float x2, float y2) {

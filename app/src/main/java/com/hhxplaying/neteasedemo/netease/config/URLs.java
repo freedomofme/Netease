@@ -16,6 +16,9 @@ public class URLs {
     public static final String WEBP_POS_URL = ".720x2147483647.75.auto.webp";
     public static final String WEBP_PRE_URL = "http://s.cimg.163.com/pi/";
 
+    public static final String WEBP_POS_URL2 = "x2147483647&quality=75&type=webp";
+    public static final String WEBP_PRE_URL2 = "http://nimg.ws.126.net/?url=";
+
     public static final String host = "http://c.m.163.com/";
     public static final String PRE_URL = host + "nc/article/headline/";
     public static final String POS_URL = "/0-10.html";

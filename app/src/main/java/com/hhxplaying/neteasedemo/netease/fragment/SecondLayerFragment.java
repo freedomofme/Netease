@@ -61,7 +61,7 @@ public class SecondLayerFragment extends LazyFragment {
 
 
 	private void getIndexNews() {
-        MySingleton.getInstance(getActivity()).getRequestQueue().add(
+        MySingleton.getInstance(getActivity().getApplicationContext()).getRequestQueue().add(
                 RequestSingletonFactory.getInstance().getGETStringRequest(getActivity(), URLs.getUrl(tabName), new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {

@@ -94,7 +94,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 ((TextViewHolder) holder).mTitle.setText(listItem.get(position).getTitle());
                 ((TextViewHolder) holder).mSubTitle.setText(listItem.get(position).getSource());
                 ((TextViewHolder) holder).mVote.setText(listItem.get(position).getReplyCount() + "跟帖");
-                setNetworkImageView(((TextViewHolder) holder).mImageView, listItem.get(position).getImgsrc());
+
+                NetworkImageView tempImage = ((TextViewHolder) holder).mImageView;
+                setNetworkImageView(tempImage, NeteaseURLParse.parseWebpImageForTextAndImageType(listItem.get(position).getImgsrc(), tempImage.getWidth()));
                 Log.i(TAG, "onBindViewHolder TextViewHolder");
                 ((TextViewHolder) holder).v.setOnClickListener(new TextViewHolderListener(position));
             }
@@ -151,7 +153,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                         defaultImages2[i] = defaultImage;
                     }
 
-                    urlsStrings[0] = hold.getImgsrc();
+                    urlsStrings[0] = NeteaseURLParse.parseWebpImageForTextAndImageType(hold.getImgsrc(), ((BannerViewHold)holder).mSwitchImage.getWidth());
                     for (int i = 1; i < urlsStrings.length; i++) {
                         //由size的值保证不越界
                         urlsStrings[i] = hold.getAdss().get(i - 1).getImgsrc();
@@ -172,7 +174,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                         public void displayImageFromURL(ImageView view, String url) {
                             ImageLoader.ImageListener listener = ImageLoader.getImageListener(view,
                                     defaultImage, failImage);
-                            MySingleton.getInstance(mContext).getImageLoader().get(url,
+                            MySingleton.getInstance(mContext.getApplicationContext()).getImageLoader().get(url,
                                     listener, 1000, 500);
                         }
                     });
@@ -242,7 +244,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         networkImageView.setDefaultImageResId(defaultImage);
         networkImageView.setErrorImageResId(defaultImage);
         networkImageView.setImageUrl(url,
-                MySingleton.getInstance(mContext).getImageLoader());
+                MySingleton.getInstance(mContext.getApplicationContext()).getImageLoader());
     }
 
 
@@ -279,7 +281,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     private void getPhotosetImageJsonURl(final HorizontalImageRecyclerViewAdapter adapter, final String url) {
-        MySingleton.getInstance(mContext).getRequestQueue().add(
+        MySingleton.getInstance(mContext.getApplicationContext()).getRequestQueue().add(
                 RequestSingletonFactory.getInstance().getGETStringRequest(mContext, url,
                         new Response.Listener() {
                     @Override

@@ -94,7 +94,7 @@ public class NewsDisplayActivity extends AppCompatActivity {
     }
 
     private void getNews(final String link) {
-        MySingleton.getInstance(context).getRequestQueue().add(
+        MySingleton.getInstance(context.getApplicationContext()).getRequestQueue().add(
                 RequestSingletonFactory.getInstance().getGETStringRequest(context, link,
                         new Response.Listener() {
                             @Override

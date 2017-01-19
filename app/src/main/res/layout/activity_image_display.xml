@@ -13,12 +13,12 @@
         android:layout_alignParentTop="true"
         android:minHeight="40dp" />
 
-    <com.hhxplaying.neteasedemo.netease.widget.SwitchImage
-        xmlns:personattr="http://schemas.android.com/apk/res/com.hhxplaying.neteasedemo.netease"
-        android:id="@+id/fragment_tabmain_viewPager"
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vp_imagepager"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        personattr:is_last_item_to_next_or_stop="false">
-    </com.hhxplaying.neteasedemo.netease.widget.SwitchImage>
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentBottom="true">
+
+    </android.support.v4.view.ViewPager>
 </RelativeLayout>
