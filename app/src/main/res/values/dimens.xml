@@ -22,7 +22,7 @@
     <dimen name="list_item_vote_padding">1dp</dimen>
 
     <!--banner高度-->
-    <dimen name="list_banner_height">170dp</dimen>
+    <dimen name="list_banner_height">177dp</dimen>
     <dimen name="list_banner_title_height">26dp</dimen>
 
 
