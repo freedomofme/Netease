@@ -15,12 +15,13 @@ APP总体底部的4个Fragment切换和在每个Fragment中的ViewPage切换, �
 
 ### 列表实现
 新闻列表采用纵向RecyclerView，其中暂时划分为3种类型。
-
-	public static enum ITEM_TYPE {
-        ITEM_TYPE_BANNER,
-        ITEM_TYPE_IMAGE,
-        ITEM_TYPE_TEXT
-    }
+```java
+public static enum ITEM_TYPE {
+    ITEM_TYPE_BANNER,
+    ITEM_TYPE_IMAGE,
+    ITEM_TYPE_TEXT
+}
+```
 分别表示以下3种类型：
 - BANNER：
 ![](http://images2015.cnblogs.com/blog/739642/201509/739642-20150914143937664-372953191.png)
@@ -54,22 +55,23 @@ ITEM_TYPE_IMAGE的网易原版实现是3张图片。
 于是采用了onTouch函数做点击响应的回调, 做了如下简单的判断：
 
 用户是点击图片还是水平滑动RecyclerIView
-
-    imageView.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-     public boolean onTouch(View v, MotionEvent event) {
-      //抬起按钮时判断，之前是否滑动了,若没有滑动则响应点击事件
-                    if (event.getAction() == MotionEvent.ACTION_UP && !isMoved)
-                        mListener.onViewPageTouch((NetworkImageView) v, index);
-                    else {
-                        isMoved = false;
-                    }
-                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        isMoved = true;
-                    }
-                    return true;
-                }
-            });
+```java
+imageView.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        //抬起按钮时判断，之前是否滑动了,若没有滑动则响应点击事件
+        if (event.getAction() == MotionEvent.ACTION_UP && !isMoved)
+            mListener.onViewPageTouch((NetworkImageView) v, index);
+        else {
+            isMoved = false;
+        }
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            isMoved = true;
+        }
+        return true;
+    }
+});
+```
 
 ### 顶部沉浸式状态栏实现
 参考了这篇文章：
@@ -82,11 +84,11 @@ NewsDisplayActivity.java第70行，展示了一个返回数据Html格式的样�
 
 本文采用的方法是通过Android自带的android.text.Html类解析Html和html下<img>标签的图像。
 核心代码如下：
-
-		URLImageParser p = new URLImageParser(content, this);
-        Spanned htmlSpan = Html.fromHtml(body, p, null);
-        content.setText(htmlSpan);
-
+```java
+URLImageParser p = new URLImageParser(content, this);
+Spanned htmlSpan = Html.fromHtml(body, p, null);
+content.setText(htmlSpan);
+```
 其中的URLImageParser是用来解析<img>标签的，这里有很大的进一步优化的空间。
 
 这类主要是参考该文，并修正了图片尺寸上的问题。[http://stackoverflow.com/questions/15617210/android-html-fromhtml-with-images/15617341#15617341](http://stackoverflow.com/questions/15617210/android-html-fromhtml-with-images/15617341#15617341)
