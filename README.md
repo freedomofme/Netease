@@ -9,7 +9,7 @@
 
 ### 目前效果
 
-* 目前效果：![](home.jpeg)
+* 目前效果：![](./Screenshot/home.jpeg)
 
 ### 更新：
 
