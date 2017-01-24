@@ -68,7 +68,7 @@ APP总体底部的4个Fragment切换和在每个Fragment中的ViewPage切换, �
 这里采用在垂直RecycleView中嵌套水平RecycleView。
 主要的布局结构是这样的：
 
-![](layout.png)
+![](./Screenshot/layout.png)
 
 #### 2.存在问题
 如果不进行如何额外的处理，那么看上去一些正常。但是每次将水平列表滑动尽头并继续滑动时，会触发Viewpage的页面切换。
