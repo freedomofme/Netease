@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by HHX on 15/9/12.
  */
-public class photos implements Serializable {
+public class Photos implements Serializable {
     private String timgurl = "";
 
     private String photohtml = "";

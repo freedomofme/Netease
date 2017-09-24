@@ -1,6 +1,6 @@
 package com.hhxplaying.neteasedemo.netease.bean.newsDetails;
 
-public class img {
+public class Img {
     private String ref;
 
     private String pixel;

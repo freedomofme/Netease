@@ -1,6 +1,6 @@
 package com.hhxplaying.neteasedemo.netease.bean.newsDetails;
 import java.util.List;
-public class news {
+public class News {
     private String body;
 
 //    private List<users> users ;
@@ -13,7 +13,7 @@ public class news {
 
 //    private List<votes> votes ;
 
-    private List<img> img ;
+    private List<Img> img ;
 
     private String digest;
 
@@ -89,10 +89,10 @@ public class news {
 //    public List<votes> getVotes(){
 //        return this.votes;
 //    }
-    public void setImg(List<img> img){
+    public void setImg(List<Img> img){
         this.img = img;
     }
-    public List<img> getImg(){
+    public List<Img> getImg(){
         return this.img;
     }
     public void setDigest(String digest){

@@ -3,7 +3,7 @@ package com.hhxplaying.neteasedemo.netease.bean;
 /**
  * Created by HHX on 15/9/9.
  */
-public class ads {
+public class Ads {
     private static final long serialVersionUID = 3L;
     private String title = "";
 

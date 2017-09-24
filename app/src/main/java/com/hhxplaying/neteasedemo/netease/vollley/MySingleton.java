@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.RequestQueue.RequestFilter;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
 
 public class MySingleton {
     private static MySingleton mInstance;
@@ -65,7 +65,7 @@ public class MySingleton {
 
     public void cancelAllPendingRequests() {
         if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(new RequestFilter(){
+            mRequestQueue.cancelAll(new RequestQueue.RequestFilter(){
                 @Override
                 public boolean apply(Request<?> request) {
                     return true;

@@ -43,7 +43,7 @@ public class OneNewsItemBean {
 
     private int order = -1;
 
-    private List<imgextra> imgextra;
+    private List<Imgextra> imgextra;
 
     private int priority = -1;
 
@@ -55,7 +55,7 @@ public class OneNewsItemBean {
 
     private String imgsrc = "";
 
-    private List<ads> ads;
+    private List<Ads> ads;
 
     private String photosetID = "";
 
@@ -63,11 +63,11 @@ public class OneNewsItemBean {
 
     private String postid = "";
 
-    public List<ads> getAdss() {
+    public List<Ads> getAdss() {
         return ads;
     }
 
-    public void setAdss(List<ads> adss) {
+    public void setAdss(List<Ads> adss) {
         this.ads = adss;
     }
 
@@ -160,11 +160,11 @@ public class OneNewsItemBean {
         this.hasImg = hasImg;
     }
 
-    public List<imgextra> getImgextra() {
+    public List<Imgextra> getImgextra() {
         return imgextra;
     }
 
-    public void setImgextras(List<imgextra> imgextra) {
+    public void setImgextras(List<Imgextra> imgextra) {
         this.imgextra = imgextra;
     }
 

@@ -30,7 +30,7 @@ public class PhotoSet implements Serializable{
 
     private String reporter;
 
-    private List<photos> photos;
+    private List<Photos> photos;
 
     private String setname;
 
@@ -120,10 +120,10 @@ public class PhotoSet implements Serializable{
     public String getReporter(){
         return this.reporter;
     }
-    public void setPhotos(List<photos> photos){
+    public void setPhotos(List<Photos> photos){
         this.photos = photos;
     }
-    public List<photos> getPhotos(){
+    public List<Photos> getPhotos(){
         return this.photos;
     }
     public void setSetname(String setname){
