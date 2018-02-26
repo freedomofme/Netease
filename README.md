@@ -5,8 +5,6 @@
 
 截止目前，实现了包括新闻下的包括头条、体育、娱乐的一系列的新闻展示，以及点击后进入的新闻详情展示。
 
-[![Github All Releases](https://img.shields.io/github/downloads/freedomofme/Netease/total.svg)]()
-
 <!--more-->
 
 ### 目前效果
