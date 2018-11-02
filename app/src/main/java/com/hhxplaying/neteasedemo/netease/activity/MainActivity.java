@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.hhxplaying.neteasedemo.netease.R;
 import com.hhxplaying.neteasedemo.netease.fragment.FirstLayerFragment;
-import com.hhxplaying.neteasedemo.netease.fragment.VideoFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
@@ -118,16 +117,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getFragmentForPage(int position) {
             Fragment mainFragment;
-            if (position < 1) {
-                mainFragment = new FirstLayerFragment();
+            mainFragment = new FirstLayerFragment();
 
-                Bundle bundle = new Bundle();
-                bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
-                bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
-                mainFragment.setArguments(bundle);
-            } else {
-                mainFragment = new VideoFragment();
-            }
+            Bundle bundle = new Bundle();
+            bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
+            bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
+            mainFragment.setArguments(bundle);
 
             return mainFragment;
         }

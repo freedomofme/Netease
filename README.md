@@ -13,6 +13,7 @@
 
 ### 更新：
 
+* 2018-11-02 有人提出一个issue，修复了下，顺带修复了sync failed 的问题
 * 2017-01-18 趁着寒假，解决历史遗留的复杂嵌套布局滑动冲突；完成基于[自定义Volley](https://github.com/freedomofme/HandyVolley)的内容预加载而后响应网络回调。
 
 * 2015-XX-XX 新闻内容的详情展示已经实现 

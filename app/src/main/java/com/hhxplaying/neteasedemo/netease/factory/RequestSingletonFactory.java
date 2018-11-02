@@ -17,8 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hhxplaying.neteasedemo.netease.config.ErrorCode;
 
-import org.cybergarage.http.HTTP;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -113,19 +111,21 @@ public class RequestSingletonFactory {
         };
     }
 
+    public static final String CONTENT_TYPE = "Content-Type";
+
     private void addEncodeing2Request(NetworkResponse response) {
         try {
-            String type = response.headers.get(HTTP.CONTENT_TYPE);
+            String type = response.headers.get(CONTENT_TYPE);
             if (type == null) {
                 //Content-Type:
                 Log.d("RVA", "content type was null");
                 type = TYPE_UTF8_CHARSET;
-                response.headers.put(HTTP.CONTENT_TYPE, type);
+                response.headers.put(CONTENT_TYPE, type);
             } else if (!type.contains("charset")) {
                 //Content-Type: text/plain;
                 Log.d("RVA", "charset was null, added encode utf-8");
                 type += ";" + TYPE_UTF8_CHARSET;
-                response.headers.put(HTTP.CONTENT_TYPE, type);
+                response.headers.put(CONTENT_TYPE, type);
             } else {
                 //Nice! Content-Type: text/plain; charset=utf-8'
                 Log.d("RVA", "charset is " + type);
