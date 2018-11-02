@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     android:background="@color/fragment_background"
     >
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_recycler_view"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        />
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_recycler_view"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </RelativeLayout>

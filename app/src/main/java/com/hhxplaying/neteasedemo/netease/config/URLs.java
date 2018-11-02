@@ -21,7 +21,7 @@ public class URLs {
 
     public static final String host = "http://c.m.163.com/";
     public static final String PRE_URL = host + "nc/article/headline/";
-    public static final String POS_URL = "/0-10.html";
+    public static final String POS_URL = ".html";
 
     public static String tabName[] = {"头条", "科技", "体育", "广州", "财经", "足球", "娱乐", "电影", "汽车", "博客", "社会", "旅游"};
 
@@ -89,8 +89,14 @@ public class URLs {
     public static final String CommonUrl = host + "nc/article/list/";
 
 
-    public static String getUrl(String key) {
-        return PRE_URL + getUrlTag(key) + POS_URL;
+    /**
+     *
+     * @param key tabName字段，即新闻的标签名称
+     * @param startEndIndex 起始终止索引, ex 10-20
+     * @return 将要请求的url
+     */
+    public static String concatNewsListURL(String key, String startEndIndex) {
+        return PRE_URL + getUrlTag(key) + "/" + startEndIndex +  POS_URL;
     }
 
     //截取T字母开始的一段

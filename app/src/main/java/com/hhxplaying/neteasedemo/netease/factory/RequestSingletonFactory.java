@@ -71,13 +71,21 @@ public class RequestSingletonFactory {
           public Map<String, String> getHeaders() throws AuthFailureError{
               return defaultPairs_baishuku;
           }
+//          https://github.com/freedomofme/HandyVolley
+//          Ttl和softTtl说明 Ttl和softTtl用来用户自定义缓存时间，通常softTtl <= Ttl。
+//
+//          当一个请求的过期时间 > Ttl, 则重新请求服务器。
+//
+//          当一个请求的过期时间 > softTtl && < Ttl, 则先使用缓存数据做出响应，并同时将该请求发送服务器。（也就是说，响应回调函数会触发两次）
+//
+//          当一个请求的过期时间 > softTtl，则直接使用本地缓存。
           @Override
           public int getDefaultTtl() {
-              return 15 * 24 * 3600 * 1000;
+              return 1 * 30 * 1000; // 哎呀，当时写的时候在接口里返回是缓存的，还是真实的。结果只能临时getDefaultTtl和getDefaultSoftTtl一致了。
           }
           @Override
           public int getDefaultSoftTtl() {
-              return 1 * 60 * 1000;
+              return 1 * 30 * 1000;
           }
           @Override
           public boolean shouldLocalCacheControl() {
